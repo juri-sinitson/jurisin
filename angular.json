@@ -1,6 +1,56 @@
 {
   "version": 1,
   "projects": {
+    "login-feature": {
+      "projectType": "library",
+      "root": "libs/login/feature",
+      "sourceRoot": "libs/login/feature/src",
+      "prefix": "jurisin",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/login/feature"],
+          "options": {
+            "jestConfig": "libs/login/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/login/feature/src/**/*.ts",
+              "libs/login/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
+    "product-feature": {
+      "projectType": "library",
+      "root": "libs/product/feature",
+      "sourceRoot": "libs/product/feature/src",
+      "prefix": "jurisin",
+      "architect": {
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/product/feature"],
+          "options": {
+            "jestConfig": "libs/product/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/product/feature/src/**/*.ts",
+              "libs/product/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shop": {
       "projectType": "application",
       "root": "apps/shop",

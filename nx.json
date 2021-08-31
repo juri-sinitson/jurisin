@@ -27,6 +27,12 @@
     ]
   },
   "projects": {
+    "login-feature": {
+      "tags": []
+    },
+    "product-feature": {
+      "tags": []
+    },
     "shop": {
       "tags": []
     },
