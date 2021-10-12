@@ -1,6 +1,47 @@
 {
   "version": 1,
   "projects": {
+    "artwork-feature": {
+      "projectType": "library",
+      "root": "libs/artwork/feature",
+      "sourceRoot": "libs/artwork/feature/src",
+      "prefix": "jurisin",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/artwork/feature"],
+          "options": {
+            "project": "libs/artwork/feature/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/artwork/feature/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/artwork/feature/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/artwork/feature"],
+          "options": {
+            "jestConfig": "libs/artwork/feature/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/artwork/feature/src/**/*.ts",
+              "libs/artwork/feature/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "login-feature": {
       "projectType": "library",
       "root": "libs/login/feature",
