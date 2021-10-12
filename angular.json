@@ -39,6 +39,62 @@
               "libs/artwork/feature/src/**/*.html"
             ]
           }
+        },
+        "storybook": {
+          "builder": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/artwork/feature/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "builder": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/artwork-feature",
+            "config": {
+              "configFolder": "libs/artwork/feature/.storybook"
+            }
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      }
+    },
+    "artwork-feature-e2e": {
+      "root": "apps/artwork-feature-e2e",
+      "sourceRoot": "apps/artwork-feature-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/artwork-feature-e2e/cypress.json",
+            "devServerTarget": "artwork-feature:storybook"
+          },
+          "configurations": {
+            "ci": {
+              "devServerTarget": "artwork-feature:storybook:ci"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/artwork-feature-e2e/**/*.{js,ts}"]
+          }
         }
       }
     },
