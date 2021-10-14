@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'jurisin-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
 })
-export class DetailsComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+export class DetailsComponent {
+  @Input() image = '';
+  @Input() artist = '';
+  @Input() title = '';
+  @Input() date = '';
+  @Input() placeOfOrigin = '';
+  @Input() department_title = '';
 }
