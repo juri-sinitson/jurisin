@@ -1,9 +1,14 @@
+// Angular
 import { Component, Input } from '@angular/core';
 
+// PrimeNG
+import { DialogService } from 'primeng/dynamicdialog';
+import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-dialog-shell.component';
 
 @Component({
   selector: 'jurisin-grid-view',
-  templateUrl: './grid-view.component.html'
+  templateUrl: './grid-view.component.html',
+  providers: [DialogService],
 })
 export class GridViewComponent {
   @Input() data = '';
@@ -33,5 +38,18 @@ export class GridViewComponent {
       id: 'car id 6',
       year: '2021',
     }
-  ]
+  ];
+
+  constructor(private dialogService: DialogService) {}
+
+  show() {
+    const ref = this.dialogService.open(DetailsDynamicDialogShellComponent, {
+      data: {
+        id: 'testme',
+      },
+      header: 'Artwork Details',
+      width: '70%'
+    });
+  }
+
 }

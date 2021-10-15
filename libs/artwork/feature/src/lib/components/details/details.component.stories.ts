@@ -31,6 +31,6 @@ primary.args = {
     artist:  'Alma Thomas',
     title:  'Starry Night and the Astronauts',
     date:  '1972',
-    placeOfOrigin:  'United States',
+    placeOfOrigin: 'United States',
     department_title:  'Contemporary Art',
 }

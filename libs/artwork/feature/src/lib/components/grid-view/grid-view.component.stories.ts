@@ -1,5 +1,6 @@
 // Angular
 import { CommonModule } from '@angular/common';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 // Storybook
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
@@ -8,9 +9,11 @@ import { moduleMetadata, Story, Meta } from '@storybook/angular';
 import { DataViewModule } from 'primeng/dataview';
 import { CardModule } from 'primeng/card';
 import { InputTextModule } from 'primeng/inputtext';
+import { DynamicDialogModule } from 'primeng/dynamicdialog';
 
 // Own
 import { GridViewComponent } from './grid-view.component';
+import { DetailsModule } from '../details/details.module';
 
 export default {
   title: 'GridViewComponent',
@@ -20,11 +23,16 @@ export default {
       imports: [
         // Angular
         CommonModule,
+        BrowserAnimationsModule,
 
         // PrimeNG
         DataViewModule,
         CardModule,
         InputTextModule,
+        DynamicDialogModule,
+
+        // Own
+        DetailsModule,
       ],
     })
   ],
