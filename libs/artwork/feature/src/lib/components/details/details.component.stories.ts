@@ -6,6 +6,7 @@ import { CardModule } from 'primeng/card';
 
 // Own
 import { DetailsComponent } from './details.component';
+import { ErrorModule, LoadingModule } from '@jurisin/shared/ui-common';
 
 export default {
   title: 'DetailsComponent',
@@ -13,7 +14,12 @@ export default {
   decorators: [
     moduleMetadata({
       imports: [
-        CardModule
+        // PrimeNG
+        CardModule,
+
+        // Own
+        ErrorModule,
+        LoadingModule,
       ],
     })
   ],
@@ -27,10 +33,48 @@ const template: Story<DetailsComponent> = (args: DetailsComponent) => ({
 
 export const primary = template.bind({});
 primary.args = {
-    image:  'https://www.artic.edu/iiif/2/e966799b-97ee-1cc6-bd2f-a94b4b8bb8f9/full/843,/0/default.jpg',
-    artist:  'Alma Thomas',
-    title:  'Starry Night and the Astronauts',
-    date:  '1972',
-    placeOfOrigin: 'United States',
-    department_title:  'Contemporary Art',
-}
+  loading: false,
+  error: '',
+  image_id: '132b782d-54e6-70e1-18f9-211468c09099',
+  artist_title: 'Camille Pissarro',
+  title: 'Woman Mending',
+  date_display: '1895',
+  provenance_text: `
+    The artist (d. 1903); by descent to his son, Ludovic-Rodolph (Rodo) Pissarro, Paris,
+    1904 [this and the two following per Pissarro and Snollaerts, 2005]; sold to Sam Saltz,
+    New York, by December 1950; sold to Mrs. Mary Block (née Lasker), Chicago, December 1950;
+    given to the Art Institute of Chicago, beginning in 1959 [in undivided fractional interests,
+    receiving final fractional interest for one hundred percent ownership in 1961].`,
+};
+
+export const error = template.bind({});
+error.args = {
+  loading: false,
+  error: 'Some error happened!',
+  image_id: '132b782d-54e6-70e1-18f9-211468c09099',
+  artist_title: 'Camille Pissarro',
+  title: 'Woman Mending',
+  date_display: '1895',
+  provenance_text: `
+    The artist (d. 1903); by descent to his son, Ludovic-Rodolph (Rodo) Pissarro, Paris,
+    1904 [this and the two following per Pissarro and Snollaerts, 2005]; sold to Sam Saltz,
+    New York, by December 1950; sold to Mrs. Mary Block (née Lasker), Chicago, December 1950;
+    given to the Art Institute of Chicago, beginning in 1959 [in undivided fractional interests,
+    receiving final fractional interest for one hundred percent ownership in 1961].`,
+};
+
+export const loading = template.bind({});
+loading.args = {
+  loading: true,
+  error: '',
+  image_id: '132b782d-54e6-70e1-18f9-211468c09099',
+  artist_title: 'Camille Pissarro',
+  title: 'Woman Mending',
+  date_display: '1895',
+  provenance_text: `
+    The artist (d. 1903); by descent to his son, Ludovic-Rodolph (Rodo) Pissarro, Paris,
+    1904 [this and the two following per Pissarro and Snollaerts, 2005]; sold to Sam Saltz,
+    New York, by December 1950; sold to Mrs. Mary Block (née Lasker), Chicago, December 1950;
+    given to the Art Institute of Chicago, beginning in 1959 [in undivided fractional interests,
+    receiving final fractional interest for one hundred percent ownership in 1961].`,
+};

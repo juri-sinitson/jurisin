@@ -1,15 +1,15 @@
-<p-card>
+
+<jurisin-error *ngIf="error" [message]="error"></jurisin-error>
+<jurisin-loading *ngIf="!error && loading"></jurisin-loading>
+<p-card *ngIf="!error && !loading">
   <ng-template pTemplate="header">
-    <img src="{{image}}" />
+    <img src="https://www.artic.edu/iiif/2/{{image_id}}/full/600,/0/default.jpg" />
   </ng-template>
   <ng-template pTemplate="title">
       {{title}}
   </ng-template>
   <ng-template pTemplate="subtitle">
-    {{artist}}, {{date}}
+    {{artist_title}}, {{date_display}}
  </ng-template>
-  Body Content
-  <ng-template pTemplate="footer">
-      {{placeOfOrigin}}, {{department_title}}
-  </ng-template>
+    {{ provenance_text }}
 </p-card>
