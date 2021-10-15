@@ -26,7 +26,6 @@ export default {
 } as Meta<DetailsComponent>;
 
 const template: Story<DetailsComponent> = (args: DetailsComponent) => ({
-  component: DetailsComponent,
   props: args,
 });
 

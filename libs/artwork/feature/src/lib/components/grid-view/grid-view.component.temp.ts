@@ -42,6 +42,7 @@ export default {
 } as Meta<GridViewComponent>;
 
 const template: Story<GridViewComponent> = (args: GridViewComponent) => ({
+  component: GridViewComponent,
   props: args,
 });
 

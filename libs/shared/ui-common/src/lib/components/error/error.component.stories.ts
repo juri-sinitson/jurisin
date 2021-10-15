@@ -20,7 +20,6 @@ export default {
 } as Meta<ErrorComponent>;
 
 const template: Story<ErrorComponent> = (args: ErrorComponent) => ({
-  component: ErrorComponent,
   props: args,
 });
 

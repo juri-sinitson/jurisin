@@ -21,7 +21,6 @@ export default {
 } as Meta<LoadingComponent>;
 
 const template: Story<LoadingComponent> = (args: LoadingComponent) => ({
-  component: LoadingComponent,
   props: args,
 });
 
