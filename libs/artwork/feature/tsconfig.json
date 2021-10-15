@@ -20,6 +20,8 @@
     "noFallthroughCasesInSwitch": true,
     "paths": {
       "@jurisin/artwork/api": ["libs/artwork/api/src/index.ts"],
+      "@jurisin/shared/ui-common": ["libs/shared/ui-common/src/index.ts"],
+      "@jurisin/shared/util": ["libs/shared/util/src/index.ts"]
     }
   },
   "angularCompilerOptions": {

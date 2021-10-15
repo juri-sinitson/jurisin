@@ -1,6 +1,11 @@
+<jurisin-error *ngIf="error" [message]="error"></jurisin-error>
+<jurisin-loading *ngIf="!error && loading"></jurisin-loading>
+
 <p-dataView
+  *ngIf="!error && !loading"
   #dv
   [value]="artworks"
+  [loading]="loading"
   layout="grid"
   filterBy="artist_title,title,date_display"
 >

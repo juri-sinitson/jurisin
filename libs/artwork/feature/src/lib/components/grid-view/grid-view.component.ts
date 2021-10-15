@@ -7,6 +7,7 @@ import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-d
 
 // Own
 import { Artwork } from '@jurisin/artwork/api';
+import { EntityBase } from '@jurisin/shared/util';
 
 @Component({
   selector: 'jurisin-grid-view',
@@ -14,7 +15,9 @@ import { Artwork } from '@jurisin/artwork/api';
   providers: [DialogService],
 })
 export class GridViewComponent {
-  @Input() artworks: Partial<Artwork>[] = [];
+  @Input() artworks: Partial<Artwork> & EntityBase [] = [];
+  @Input() error = '';
+  @Input() loading = false;
 
   constructor(private dialogService: DialogService) {}
 

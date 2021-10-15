@@ -14,6 +14,7 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 // Own
 import { GridViewComponent } from './grid-view.component';
 import { DetailsModule } from '../details/details.module';
+import { ErrorModule, LoadingModule } from '@jurisin/shared/ui-common';
 
 export default {
   title: 'GridViewComponent',
@@ -33,6 +34,8 @@ export default {
 
         // Own
         DetailsModule,
+        ErrorModule,
+        LoadingModule,
       ],
     })
   ],
@@ -45,6 +48,8 @@ const template: Story<GridViewComponent> = (args: GridViewComponent) => ({
 
 export const primary = template.bind({});
 primary.args = {
+    loading: false,
+    error: '',
     artworks:  [
       {
         id: '11312',
@@ -82,4 +87,48 @@ primary.args = {
         date_display: 'c. 1935',
       }
    ],
-}
+};
+
+export const error = template.bind({});
+error.args = {
+    loading: false,
+    error: 'Error happened!',
+    artworks:  [
+      {
+        id: '11312',
+        image_id: '132b782d-54e6-70e1-18f9-211468c09099',
+        artist_title: 'Camille Pissarro',
+        title: 'Woman Mending',
+        date_display: '1895',
+      },
+      {
+        id: '9614',
+        image_id: '0330a6dd-774e-eff1-0073-2be5f85b81d0',
+        artist_title: 'Morris Kantor',
+        title: 'Haunted House',
+        date_display: '1930',
+      },
+   ],
+};
+
+export const loading = template.bind({});
+loading.args = {
+    loading: true,
+    error: '',
+    artworks:  [
+      {
+        id: '11312',
+        image_id: '132b782d-54e6-70e1-18f9-211468c09099',
+        artist_title: 'Camille Pissarro',
+        title: 'Woman Mending',
+        date_display: '1895',
+      },
+      {
+        id: '9614',
+        image_id: '0330a6dd-774e-eff1-0073-2be5f85b81d0',
+        artist_title: 'Morris Kantor',
+        title: 'Haunted House',
+        date_display: '1930',
+      },
+   ],
+};
