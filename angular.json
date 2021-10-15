@@ -286,6 +286,47 @@
         }
       }
     },
+    "shared-util": {
+      "projectType": "library",
+      "root": "libs/shared/util",
+      "sourceRoot": "libs/shared/util/src",
+      "prefix": "jurisin",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/shared/util"],
+          "options": {
+            "project": "libs/shared/util/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/shared/util/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/shared/util/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/shared/util"],
+          "options": {
+            "jestConfig": "libs/shared/util/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/shared/util/src/**/*.ts",
+              "libs/shared/util/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "shop": {
       "projectType": "application",
       "root": "apps/shop",

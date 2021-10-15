@@ -19,7 +19,8 @@
       "@jurisin/artwork/feature": ["libs/artwork/feature/src/index.ts"],
       "@jurisin/login/feature": ["libs/login/feature/src/index.ts"],
       "@jurisin/product/feature": ["libs/product/feature/src/index.ts"],
-      "@jurisin/shared/ui-common": ["libs/shared/ui-common/src/index.ts"]
+      "@jurisin/shared/ui-common": ["libs/shared/ui-common/src/index.ts"],
+      "@jurisin/shared/util": ["libs/shared/util/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
