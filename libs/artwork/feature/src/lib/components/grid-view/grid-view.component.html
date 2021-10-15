@@ -1,0 +1,22 @@
+<p-dataView
+  #dv
+  [value]="cars"
+  layout="grid"
+  filterBy="id,year"
+>
+  <ng-template pTemplate="header">
+    <input type="search" pInputText placeholder="Filter" (input)="dv.filter($event.target.value, 'contains')" />
+  </ng-template>
+  <ng-template let-car pTemplate="gridItem">
+    <div class="col-4 md-4 p-2">
+      <p-card>
+        <ng-template pTemplate="title">
+          <div>{{car.id}}</div>
+        </ng-template>
+        <ng-template pTemplate="subtitle">
+          <div>{{car.year}}</div>
+        </ng-template>
+      </p-card>
+    </div>
+  </ng-template>
+</p-dataView>
