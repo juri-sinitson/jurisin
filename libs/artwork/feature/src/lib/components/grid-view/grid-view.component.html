@@ -1,20 +1,23 @@
 <p-dataView
   #dv
-  [value]="cars"
+  [value]="artworks"
   layout="grid"
-  filterBy="id,year"
+  filterBy="artist_title,title,date_display"
 >
   <ng-template pTemplate="header">
     <input type="search" pInputText placeholder="Filter" (input)="dv.filter($event.target.value, 'contains')" />
   </ng-template>
-  <ng-template let-car pTemplate="gridItem">
-    <div class="col-4 md-4 p-2" (click)="show()">
-      <p-card>
+  <ng-template let-artwork pTemplate="gridItem">
+    <div class="col-12 md:col-4 md-4 p-2" (click)="show(artwork.id)">
+      <p-card styleClass="cursor-pointer">
+        <ng-template pTemplate="header">
+          <img src="https://www.artic.edu/iiif/2/{{artwork.image_id}}/full/200,/0/default.jpg" />
+        </ng-template>
         <ng-template pTemplate="title">
-          <div>{{car.id}}</div>
+          <div>{{artwork.title}}</div>
         </ng-template>
         <ng-template pTemplate="subtitle">
-          <div>{{car.year}}</div>
+          <div>{{artwork.artist_title}}, {{artwork.date_display}}</div>
         </ng-template>
       </p-card>
     </div>

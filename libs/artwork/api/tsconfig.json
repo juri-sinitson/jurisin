@@ -14,7 +14,10 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@jurisin/shared/util": ["libs/shared/util/src/index.ts"],
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,
