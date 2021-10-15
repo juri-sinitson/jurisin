@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@jurisin/artwork/api": ["libs/artwork/api/src/index.ts"],
       "@jurisin/artwork/feature": ["libs/artwork/feature/src/index.ts"],
       "@jurisin/login/feature": ["libs/login/feature/src/index.ts"],
       "@jurisin/product/feature": ["libs/product/feature/src/index.ts"],

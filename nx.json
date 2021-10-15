@@ -33,6 +33,9 @@
     ]
   },
   "projects": {
+    "artwork-api": {
+      "tags": []
+    },
     "artwork-feature": {
       "tags": []
     },

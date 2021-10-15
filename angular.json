@@ -1,6 +1,47 @@
 {
   "version": 1,
   "projects": {
+    "artwork-api": {
+      "projectType": "library",
+      "root": "libs/artwork/api",
+      "sourceRoot": "libs/artwork/api/src",
+      "prefix": "jurisin",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/artwork/api"],
+          "options": {
+            "project": "libs/artwork/api/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/artwork/api/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/artwork/api/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/artwork/api"],
+          "options": {
+            "jestConfig": "libs/artwork/api/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/artwork/api/src/**/*.ts",
+              "libs/artwork/api/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "artwork-feature": {
       "projectType": "library",
       "root": "libs/artwork/feature",
