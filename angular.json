@@ -1,6 +1,99 @@
 {
   "version": 1,
   "projects": {
+    "artwork": {
+      "projectType": "application",
+      "root": "apps/artwork",
+      "sourceRoot": "apps/artwork/src",
+      "prefix": "jurisin",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/artwork",
+            "index": "apps/artwork/src/index.html",
+            "main": "apps/artwork/src/main.ts",
+            "polyfills": "apps/artwork/src/polyfills.ts",
+            "tsConfig": "apps/artwork/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/artwork/src/favicon.ico",
+              "apps/artwork/src/assets"
+            ],
+            "styles": ["apps/artwork/src/styles.scss"],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/artwork/src/environments/environment.ts",
+                  "with": "apps/artwork/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "artwork:build:production"
+            },
+            "development": {
+              "browserTarget": "artwork:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "artwork:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/artwork/src/**/*.ts",
+              "apps/artwork/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/artwork"],
+          "options": {
+            "jestConfig": "apps/artwork/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
     "artwork-api": {
       "projectType": "library",
       "root": "libs/artwork/api",
@@ -38,6 +131,31 @@
               "libs/artwork/api/src/**/*.ts",
               "libs/artwork/api/src/**/*.html"
             ]
+          }
+        }
+      }
+    },
+    "artwork-e2e": {
+      "root": "apps/artwork-e2e",
+      "sourceRoot": "apps/artwork-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/artwork-e2e/cypress.json",
+            "devServerTarget": "artwork:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "artwork:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/artwork-e2e/**/*.{js,ts}"]
           }
         }
       }
@@ -480,5 +598,5 @@
       "style": "scss"
     }
   },
-  "defaultProject": "shop"
+  "defaultProject": "artwork"
 }

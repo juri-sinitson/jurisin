@@ -33,8 +33,15 @@
     ]
   },
   "projects": {
+    "artwork": {
+      "tags": []
+    },
     "artwork-api": {
       "tags": []
+    },
+    "artwork-e2e": {
+      "tags": [],
+      "implicitDependencies": ["artwork"]
     },
     "artwork-feature": {
       "tags": []
