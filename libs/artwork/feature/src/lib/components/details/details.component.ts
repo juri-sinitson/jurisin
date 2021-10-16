@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
 })
 export class DetailsComponent {
   @Input() error = '';
-  @Input() loading = false;
+  @Input() loading = true;
   @Input() image_id = '';
   @Input() artist_title = '';
   @Input() title = '';

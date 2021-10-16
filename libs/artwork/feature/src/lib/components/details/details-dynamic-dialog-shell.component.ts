@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
+
+import { Artwork, ArtworkService } from '@jurisin/artwork/api';
 
 @Component({
   selector: 'jurisin-details-dynamic-dialog-shell',
@@ -11,23 +14,51 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
       [title]="title"
       [date_display]="date_display"
       [provenance_text]="provenance_text"
+      [error]="error"
+      [loading]="loading"
     ></jurisin-details>
   `,
 })
 export class DetailsDynamicDialogShellComponent implements OnInit {
 
-  id = '';
-  image_id = '47f44d3c-e8e0-5b0a-21b4-fb4da392e008';
-  artist_title = 'William Morris';
-  title = 'Acanthus';
-  date_display = '1876 (produced 1877/1917)';
-  provenance_text = `Martin Kamer, New York, by 1988 [Incoming receipt RX17105 dated 2/26/1988
-    in curatorial file, Textiles Department]; sold to the Art Institure of Chicago, 1988.`;
+  error = '';
+  loading = true;
 
-  constructor(private config: DynamicDialogConfig) {
+  id = '';
+  image_id = '';
+  artist_title = '';
+  title = '';
+  date_display = '';
+  provenance_text = '';
+
+  constructor(
+    private config: DynamicDialogConfig,
+    private artworkService: ArtworkService,
+  ) {
   }
 
   ngOnInit() {
     this.id = this.config.data?.id ?? '';
+    this.loading = true;
+    this.artworkService.getByKey(this.id).subscribe({
+      next: (artwork: Artwork): void => {
+        this.error = '';
+        this.loading = false;
+        this.image_id = artwork.image_id;
+        this.artist_title = artwork.artist_title;
+        this.title = artwork.title;
+        this.date_display = artwork.date_display;
+        this.provenance_text = artwork.provenance_text;
+      },}
+    );
+
+    this.artworkService.getErrors().subscribe({
+      next: (data): void => {
+        this.error = data.payload.data?.error?.error?.message ?? 'Unknown request error!';
+      },
+      error: (error: Error): void => {
+        this.error = error.message;
+      }
+    });
   }
 }
