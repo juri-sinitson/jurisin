@@ -6,7 +6,8 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
     "start": "nx serve",
-    "build": "nx build",
+    "artworks-backend-local": "node apps/artwork/src/server/backend/backend-local.js",
+    "build": "nx build --configuration=production --verbose",
     "test": "nx test"
   },
   "private": true,
@@ -60,6 +61,8 @@
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "express": "^4.17.1",
+    "express-http-proxy": "^1.6.2",
     "jest": "27.0.3",
     "jest-preset-angular": "9.0.4",
     "ng-packagr": "^12.1.0",

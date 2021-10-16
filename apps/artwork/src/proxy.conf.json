@@ -1,0 +1,10 @@
+{
+  "/api/artworks/*": {
+    "target": "http://localhost:4300",
+    "secure": false,
+    "pathRewrite": {
+      "^/api/artworks": "/api/v1/artworks"
+    }
+  },
+  "logLevel": "info"
+}
