@@ -14,7 +14,7 @@
   </ng-template>
   <ng-template let-artwork pTemplate="gridItem">
     <div class="col-12 md:col-4 lg:col-3 md-4 p-2" (click)="show(artwork.id)">
-      <p-card styleClass="cursor-pointer">
+      <p-card styleClass="cursor-pointer" styleClass="block h-full cursor-pointer">
         <ng-template pTemplate="header">
           <img src="images/{{artwork.image_id}}" />
         </ng-template>
@@ -22,7 +22,8 @@
           <div>{{artwork.title}}</div>
         </ng-template>
         <ng-template pTemplate="subtitle">
-          <div>{{artwork.artist_title}}, {{artwork.date_display}}</div>
+          <div>{{artwork.artist_title}}</div>
+          <div>{{artwork.date_display}}</div>
         </ng-template>
       </p-card>
     </div>
