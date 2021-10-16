@@ -25,19 +25,25 @@ export class GridViewShellComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.artworkService.getAll().subscribe(
-      {
-        next: (artworks: Artwork[]): void => {
-          this.artworks = artworks;
-          this.error = '';
-          this.loading = false;
-        },
-        error: (error: Error): void => {
-          this.error = error.message;
-          this.artworks = [];
-          this.loading = false;
-        }
-      }
+    this.artworkService.getAll().subscribe({
+      next: (artworks: Artwork[]): void => {
+        this.artworks = artworks;
+        this.error = '';
+        this.loading = false;
+      },}
     );
+
+    this.artworkService.getErrors().subscribe({
+      next: (data): void => {
+        this.error = data.payload.data?.error?.error?.message ?? 'Unknown request error!';
+        this.artworks = [];
+        this.loading = false;
+      },
+      error: (error: Error): void => {
+        this.error = error.message;
+        this.artworks = [];
+        this.loading = false;
+      }
+    });
   }
 }

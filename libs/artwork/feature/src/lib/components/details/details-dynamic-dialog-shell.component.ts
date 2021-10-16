@@ -6,24 +6,23 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
   template: `
     <h1>{{id}}</h1>
     <jurisin-details
-      [image]="image"
-      [artist]="artist"
+      [image_id]="image_id"
+      [artist_title]="artist_title"
       [title]="title"
-      [date]="date"
-      [placeOfOrigin]="placeOfOrigin"
-      [department_title]="department_title"
+      [date_display]="date_display"
+      [provenance_text]="provenance_text"
     ></jurisin-details>
   `,
 })
 export class DetailsDynamicDialogShellComponent implements OnInit {
 
   id = '';
-  image = 'https://www.artic.edu/iiif/2/e966799b-97ee-1cc6-bd2f-a94b4b8bb8f9/full/843,/0/default.jpg';
-  artist = 'Alma Thomas';
-  title = 'Starry Night and the Astronauts';
-  date = '1972';
-  placeOfOrigin = 'United States';
-  department_title = 'Contemporary Art';
+  image_id = '47f44d3c-e8e0-5b0a-21b4-fb4da392e008';
+  artist_title = 'William Morris';
+  title = 'Acanthus';
+  date_display = '1876 (produced 1877/1917)';
+  provenance_text = `Martin Kamer, New York, by 1988 [Incoming receipt RX17105 dated 2/26/1988
+    in curatorial file, Textiles Department]; sold to the Art Institure of Chicago, 1988.`;
 
   constructor(private config: DynamicDialogConfig) {
   }

@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+
+import { CardModule } from 'primeng/card';
+
 import { DetailsComponent } from './details.component';
 import { DetailsDynamicDialogShellComponent } from './details-dynamic-dialog-shell.component';
-import { CardModule } from 'primeng/card';
+import { ErrorModule, LoadingModule } from '@jurisin/shared/ui-common';
 
 @NgModule({
   declarations: [
@@ -10,11 +13,15 @@ import { CardModule } from 'primeng/card';
     DetailsDynamicDialogShellComponent,
   ],
   imports: [
-    // Angular
-    CommonModule,
+        // Angular
+        CommonModule,
 
-    // PrimeNG
-    CardModule,
+        // PrimeNG
+        CardModule,
+
+        // Own
+        ErrorModule,
+        LoadingModule,
   ],
   exports: [
     DetailsDynamicDialogShellComponent,

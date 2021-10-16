@@ -29,4 +29,9 @@ export class GridViewComponent {
     });
   }
 
+  getValue(event: Event): string {
+    const { target } = event;
+    return (target as HTMLDataElement)?.value ?? '';
+  }
+
 }

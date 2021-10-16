@@ -10,7 +10,7 @@
   filterBy="artist_title,title,date_display"
 >
   <ng-template pTemplate="header">
-    <input type="search" pInputText placeholder="Filter" (input)="dv.filter($event.target.value, 'contains')" />
+    <input type="search" pInputText placeholder="Filter" (input)="dv.filter(getValue($event), 'contains')" />
   </ng-template>
   <ng-template let-artwork pTemplate="gridItem">
     <div class="col-12 md:col-4 lg:col-3 md-4 p-2" (click)="show(artwork.id)">

@@ -17,7 +17,13 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "paths": {
+      "@jurisin/artwork/feature": ["libs/artwork/feature/src/index.ts"],
+      "@jurisin/artwork/api": ["libs/artwork/api/src/index.ts"],
+      "@jurisin/shared/ui-common": ["libs/shared/ui-common/src/index.ts"],
+      "@jurisin/shared/util": ["libs/shared/util/src/index.ts"],
+    }
   },
   "angularCompilerOptions": {
     "strictInjectionParameters": true,

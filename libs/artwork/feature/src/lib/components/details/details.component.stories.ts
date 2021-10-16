@@ -1,3 +1,6 @@
+// Angular
+import { CommonModule } from '@angular/common';
+
 // Storybook
 import { moduleMetadata, Story, Meta } from '@storybook/angular';
 
@@ -8,12 +11,16 @@ import { CardModule } from 'primeng/card';
 import { DetailsComponent } from './details.component';
 import { ErrorModule, LoadingModule } from '@jurisin/shared/ui-common';
 
+
 export default {
   title: 'DetailsComponent',
   component: DetailsComponent,
   decorators: [
     moduleMetadata({
       imports: [
+        // Angular
+        CommonModule,
+
         // PrimeNG
         CardModule,
 
