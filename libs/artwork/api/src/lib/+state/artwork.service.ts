@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable, of, Subject, zip } from 'rxjs';
-import { filter, switchMap, tap } from 'rxjs/operators';
+import { filter, map, switchMap, tap } from 'rxjs/operators';
 
 import { Artwork } from './artwork';
 
@@ -44,7 +44,11 @@ export class ArtworkService extends EntityCollectionServiceBase<Artwork> {
     return this.entities$;
   }
 
-  getErrors(): Observable<EntityAction> {
-    return this.errors$;
+  getError(): Observable<string> {
+    return this.errors$.pipe(
+      map( (action: EntityAction): string =>
+        action.payload.data?.error?.error?.message ?? 'Unknown request error!'
+      )
+    );
   }
 }

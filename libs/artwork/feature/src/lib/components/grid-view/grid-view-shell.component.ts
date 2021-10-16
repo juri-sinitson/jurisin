@@ -33,16 +33,12 @@ export class GridViewShellComponent implements OnInit {
       },}
     );
 
-    this.artworkService.getErrors().subscribe({
-      next: (data): void => {
-        this.error = data.payload.data?.error?.error?.message ?? 'Unknown request error!';
-        this.artworks = [];
-        this.loading = false;
+    this.artworkService.getError().subscribe({
+      next: (error: string): void => {
+        this.error = error;
       },
       error: (error: Error): void => {
         this.error = error.message;
-        this.artworks = [];
-        this.loading = false;
       }
     });
   }
