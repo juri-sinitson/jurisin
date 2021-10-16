@@ -6,5 +6,9 @@
       "^/api/artworks": "/api/v1/artworks"
     }
   },
+  "/images/*": {
+    "target": "http://localhost:4300",
+    "secure": false
+  },
   "logLevel": "info"
 }

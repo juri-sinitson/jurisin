@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 
 const port = 4300;
 
 app.get('/api/v1/artworks', (req, res) => {
   const data = require('./artworks.json');
   res.json(data.data);
+});
+
+app.get('/images/:id', (req, res) => {
+  res.sendFile(`/assets/${req.url}.jpg`, {root: path.join(__dirname)});
 });
 
 // Trying to proxy to the Live server, with no success.
