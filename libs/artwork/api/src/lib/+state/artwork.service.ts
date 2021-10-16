@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable, of, Subject, zip } from 'rxjs';
-import { distinct, filter, switchMap, tap } from 'rxjs/operators';
+import { filter, switchMap, tap } from 'rxjs/operators';
 
 import { Artwork } from './artwork';
 
@@ -18,41 +18,9 @@ export class ArtworkService extends EntityCollectionServiceBase<Artwork> {
 
   constructor(serviceElementsFactory: EntityCollectionServiceElementsFactory) {
     super('Artwork', serviceElementsFactory);
-
-    // Fetching the data if not yet there
-    this.id$
-      .pipe(
-        // Preventing multiple requests e.g. when multiple components
-        // are requesting the same data
-        distinct(),
-        switchMap(
-          (id: string | number): Observable<Artwork | undefined> =>
-            this.filteredEntities$.pipe(
-              switchMap(
-                (
-                  entityCollection: Artwork[]
-                ): Observable<Artwork | undefined> => {
-                  const thatEntity: Artwork | undefined = entityCollection.find(
-                    (entity: Artwork) => `${entity.id}` === `${id}`
-                  );
-
-
-                  return of(thatEntity).pipe(
-                    // If the entity is empty
-                    filter((v: Artwork | undefined): boolean => !v),
-                    // then requesting it otherwise doing just nothing
-                    tap(() => super.getByKey(id))
-                  );
-                }
-              )
-            )
-        )
-      )
-      .subscribe();
   }
 
   getByKey(id: string | number): Observable<Artwork> {
-    this.id$.next(id);
 
     return this.filteredEntities$.pipe(
       switchMap((entityCollection: Artwork[]): Observable<Artwork> => {

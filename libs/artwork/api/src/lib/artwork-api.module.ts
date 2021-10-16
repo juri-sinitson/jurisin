@@ -1,10 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EffectsModule } from '@ngrx/effects';
-import { EntityDataModule } from '@ngrx/data';
+import { EntityDataModule, EntityDataService } from '@ngrx/data';
 import { StoreModule } from '@ngrx/store';
 import { artworkEntityMetadata } from './+state/artwork.metadata';
 import { HttpClientModule } from '@angular/common/http';
+import { ArtworkDataService } from './+state/artwork-data.service';
 
 @NgModule({
   imports: [
@@ -20,5 +21,15 @@ import { HttpClientModule } from '@angular/common/http';
       },
     }),
   ],
+  providers: [
+    ArtworkDataService,
+  ]
 })
-export class ArtworkApiModule {}
+export class ArtworkApiModule {
+  constructor(
+    entityDataService: EntityDataService,
+    artworkDataService: ArtworkDataService,
+  ) {
+    entityDataService.registerService('Artwork', artworkDataService);
+  }
+}
