@@ -21,10 +21,10 @@ export class GridViewComponent {
 
   constructor(private dialogService: DialogService) {}
 
-  show(id: string | number) {
+  show(id: string | number, title: string) {
     this.dialogService.open(DetailsDynamicDialogShellComponent, {
       data: { id, },
-      header: 'Artwork Details',
+      header: title,
       width: '70%'
     });
   }

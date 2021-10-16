@@ -13,7 +13,7 @@
     <input type="search" pInputText placeholder="Filter" (input)="dv.filter(getValue($event), 'contains')" />
   </ng-template>
   <ng-template let-artwork pTemplate="gridItem">
-    <div class="col-12 md:col-4 lg:col-3 md-4 p-2" (click)="show(artwork.id)">
+    <div class="col-12 md:col-4 lg:col-3 md-4 p-2" (click)="show(artwork.id, artwork.title)">
       <p-card styleClass="cursor-pointer" styleClass="block h-full cursor-pointer">
         <ng-template pTemplate="header">
           <img src="images/{{artwork.image_id}}" />

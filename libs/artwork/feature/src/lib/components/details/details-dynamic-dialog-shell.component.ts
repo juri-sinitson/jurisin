@@ -7,7 +7,6 @@ import { Artwork, ArtworkService } from '@jurisin/artwork/api';
 @Component({
   selector: 'jurisin-details-dynamic-dialog-shell',
   template: `
-    <h1>{{id}}</h1>
     <jurisin-details
       [image_id]="image_id"
       [artist_title]="artist_title"
