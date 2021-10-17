@@ -3426,6 +3426,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@ngrx/store-devtools@npm:^12.5.0":
+  version: 12.5.0
+  resolution: "@ngrx/store-devtools@npm:12.5.0"
+  dependencies:
+    tslib: ^2.0.0
+  peerDependencies:
+    "@ngrx/store": 12.5.0
+    rxjs: ^6.5.3 || ^7.0.0
+  checksum: 4bdabc6db64870f4132bb4b0c3c73655bb73841b01d07875b9386e336edd222e3b3a8a8e5a52f5257167faeac5a0cd8c2f3667d7be8162f8944654d48ffc634a
+  languageName: node
+  linkType: hard
+
 "@ngrx/store@npm:^12.4.0":
   version: 12.4.0
   resolution: "@ngrx/store@npm:12.4.0"
@@ -14540,6 +14552,7 @@ fsevents@^1.2.7:
     "@ngrx/effects": ^12.4.0
     "@ngrx/entity": ^12.4.0
     "@ngrx/store": ^12.4.0
+    "@ngrx/store-devtools": ^12.5.0
     "@nrwl/angular": 12.8.0
     "@nrwl/cli": 12.8.0
     "@nrwl/cypress": 12.8.0
