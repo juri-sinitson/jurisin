@@ -40,7 +40,6 @@ import { ArtworkApiModule } from '@jurisin/artwork/api';
     ArtworkApiModule,
   ],
   exports: [
-    GridViewComponent,
     GridViewShellComponent,
   ]
 })

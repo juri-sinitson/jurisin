@@ -1,16 +1,18 @@
+<div mark="imageDetails">
+  <jurisin-error *ngIf="error" [message]="error"></jurisin-error>
+  <jurisin-loading *ngIf="!error && loading"></jurisin-loading>
+  <p-card *ngIf="!error && !loading">
+    <ng-template pTemplate="header">
+      <img mark="detailsImage" src="images/{{image_id}}" />
+    </ng-template>
+    <ng-template pTemplate="title">
+        <span mark="detailsTitle">{{title}}</span>
+    </ng-template>
+    <ng-template pTemplate="subtitle">
+      <div mark="detailsArtistTitle">{{artist_title}}</div>
+      <div mark="detailsDateDisplay">{{date_display}}</div>
+   </ng-template>
+      {{ provenance_text }}
+  </p-card>
+</div>
 
-<jurisin-error *ngIf="error" [message]="error"></jurisin-error>
-<jurisin-loading *ngIf="!error && loading"></jurisin-loading>
-<p-card *ngIf="!error && !loading">
-  <ng-template pTemplate="header">
-    <img src="images/{{image_id}}" />
-  </ng-template>
-  <ng-template pTemplate="title">
-      {{title}}
-  </ng-template>
-  <ng-template pTemplate="subtitle">
-    <div>{{artist_title}}</div>
-    <div>{{date_display}}</div>
- </ng-template>
-    {{ provenance_text }}
-</p-card>

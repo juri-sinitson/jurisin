@@ -48,15 +48,21 @@ export class DetailsDynamicDialogShellComponent implements OnInit {
         this.title = artwork.title;
         this.date_display = artwork.date_display;
         this.provenance_text = artwork.provenance_text;
-      },}
+      },
+      error: (error: Error): void =>  {
+        this.error = error.message;
+        this.loading = false;
+      }}
     );
 
     this.artworkService.getError().subscribe({
       next: (error: string): void => {
         this.error = error;
+        this.loading = false;
       },
       error: (error: Error): void => {
         this.error = error.message;
+        this.loading = false;
       }
     });
   }

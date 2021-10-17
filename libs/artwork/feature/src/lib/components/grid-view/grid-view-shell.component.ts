@@ -30,15 +30,21 @@ export class GridViewShellComponent implements OnInit {
         this.artworks = artworks;
         this.error = '';
         this.loading = false;
-      },}
-    );
+      },
+      error: (error: Error): void =>  {
+        this.error = error.message;
+        this.loading = false;
+      }
+    });
 
     this.artworkService.getError().subscribe({
       next: (error: string): void => {
         this.error = error;
+        this.loading = false;
       },
       error: (error: Error): void => {
         this.error = error.message;
+        this.loading = false;
       }
     });
   }

@@ -12,6 +12,21 @@
         "<node_internals>/**"
       ],
       "program": "${workspaceFolder}\\apps\\artwork\\src\\server\\backend\\backend-local.js"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Jest: Run Current File",
+      "program": "${workspaceFolder}/node_modules/.bin/jest",
+      "args": [
+        "grid-view-shell.component.spec.ts"
+      ],
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "windows": {
+        "program": "${workspaceFolder}/node_modules/jest/bin/jest"
+      }
     }
   ]
 }
