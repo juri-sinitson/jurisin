@@ -16,8 +16,10 @@ import { GridViewModule } from './grid-view.module';
 import { GridViewShellComponent } from './grid-view-shell.component';
 import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-dialog-shell.component';
 
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { data } from 'libs/artwork/api/src/assets/artworks.json';
-import { HttpClient, HttpRequest } from '@angular/common/http';
+
+import { HttpRequest } from '@angular/common/http';
 
 class GridViewShellComponentHarness extends ComponentHarness {
 
@@ -53,7 +55,6 @@ class GridViewShellComponentHarness extends ComponentHarness {
   async isLoadingShown(): Promise<boolean> {
     return Promise.resolve((await this.locateLoading()).length > 0);
   }
-
 }
 
 class DetailsComponentHarness extends ComponentHarness {
@@ -99,7 +100,6 @@ describe('GridViewShellComponent', () => {
   let detailsSubject: DetailsComponentHarness;
   let artworkService: ArtworkService;
   let httpMock: HttpTestingController;
-  let httpClient: HttpClient;
 
   const dataRaw = data;
   const artworks: Artwork[] = data.data as Artwork[];
@@ -120,7 +120,6 @@ describe('GridViewShellComponent', () => {
 
     artworkService = TestBed.inject(ArtworkService);
     httpMock = TestBed.inject(HttpTestingController);
-    httpClient = TestBed.inject(HttpClient);
 
     return Promise.resolve(null);
   };
