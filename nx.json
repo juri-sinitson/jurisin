@@ -50,12 +50,6 @@
       "tags": [],
       "implicitDependencies": ["artwork-feature"]
     },
-    "login-feature": {
-      "tags": []
-    },
-    "product-feature": {
-      "tags": []
-    },
     "shared-ui-common": {
       "tags": []
     },
@@ -65,13 +59,6 @@
     },
     "shared-util": {
       "tags": []
-    },
-    "shop": {
-      "tags": []
-    },
-    "shop-e2e": {
-      "tags": [],
-      "implicitDependencies": ["shop"]
     }
   }
 }
