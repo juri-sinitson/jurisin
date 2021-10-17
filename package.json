@@ -8,7 +8,11 @@
     "start": "nx serve",
     "artworks-backend-local": "node apps/artwork/src/server/backend/backend-local.js",
     "build": "nx build --configuration=production --verbose",
-    "test": "nx test"
+    "test": "nx affected:test --all",
+    "affected:test": "nx affected:test",
+    "test:cover": "yarn run test --codeCoverage",
+    "lint": "nx affected:lint --all",
+    "affected:lint": "nx affected:lint"
   },
   "private": true,
   "dependencies": {
