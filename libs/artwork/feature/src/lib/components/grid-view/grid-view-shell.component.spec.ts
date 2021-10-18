@@ -169,7 +169,7 @@ describe('GridViewShellComponent', () => {
     httpMock.expectOne((req: HttpRequest<unknown>): boolean => {
       return req.url.includes('api/artworks');
     }).flush(dataRaw, options ?? {});
-    // httpMock.verify();
+    httpMock.verify();
   };
 
   const returnArtworks = () => flushOneHttpRequest();
