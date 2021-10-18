@@ -11,7 +11,7 @@ import { NEVER, of, throwError } from 'rxjs';
 import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 // Own
-import { Artwork, ArtworkApiModule, ArtworkService } from '@jurisin/artwork/api';
+import { Artwork, ArtworkModule, ArtworkService } from '@jurisin/artwork/api';
 import { GridViewModule } from './grid-view.module';
 import { GridViewShellComponent } from './grid-view-shell.component';
 import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-dialog-shell.component';
@@ -109,7 +109,7 @@ describe('GridViewShellComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
-        ArtworkApiModule,
+        ArtworkModule,
         GridViewModule,
       ],
       providers: [

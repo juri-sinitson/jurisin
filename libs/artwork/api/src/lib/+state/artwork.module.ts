@@ -7,9 +7,9 @@ import { EntityDataModule, EntityDataService } from '@ngrx/data';
 import { StoreModule } from '@ngrx/store';
 
 
-import { artworkEntityMetadata } from './+state/artwork.metadata';
+import { artworkEntityMetadata } from './artwork.metadata';
 
-import { ArtworkDataService } from './+state/artwork-data.service';
+import { ArtworkDataService } from './artwork-data.service';
 
 @NgModule({
   imports: [
@@ -29,7 +29,7 @@ import { ArtworkDataService } from './+state/artwork-data.service';
     ArtworkDataService,
   ]
 })
-export class ArtworkApiModule {
+export class ArtworkModule {
   constructor(
     entityDataService: EntityDataService,
     artworkDataService: ArtworkDataService,

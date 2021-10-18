@@ -14,7 +14,7 @@ import { GridViewComponent } from './grid-view.component';
 import { DetailsModule } from '../details/details.module';
 import { ErrorModule, LoadingModule } from '@jurisin/shared/ui-common';
 import { GridViewShellComponent } from './grid-view-shell.component';
-import { ArtworkApiModule } from '@jurisin/artwork/api';
+import { ArtworkModule } from '@jurisin/artwork/api';
 
 
 @NgModule({
@@ -37,7 +37,7 @@ import { ArtworkApiModule } from '@jurisin/artwork/api';
     DetailsModule,
     ErrorModule,
     LoadingModule,
-    ArtworkApiModule,
+    ArtworkModule,
   ],
   exports: [
     GridViewShellComponent,
