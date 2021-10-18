@@ -59,7 +59,7 @@ in postman or similar software first.
 
 ### Testing
 1. Add E2E (e.g. Cypress) tests using cypress which tests the app in productive mode or in the one similar to productive.
-2. Test filtering of images. It currently does not seem to work in jest. So you probably have to do it with E2E (e.g. Cypress) instead.
+2. Figure out how to test filtering of images in jest. Or do it with E2E (e.g. Cypress) instead.
 3. Figure out why http error is shown when testing manually or when mocking getError of the `ArtwokService`, but not when mocking the http-request like this:
 ```typescript
     httpMock.expectOne((req: HttpRequest<unknown>): boolean => {
