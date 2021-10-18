@@ -58,13 +58,15 @@ in postman or similar software first.
 4. Figure out how to proxy the relative image paths in storybook. The proxy configuration for default app is not applied to storybook automatically. Most probably you need to extend the webpack configuration of storybook, see https://storybook.js.org/docs/react/configure/webpack.
 
 ### Testing
-1. Add E2E tests using cypress which tests the app in productive mode or in the one similar to productive.
-7. Figure out why http error is shown when testing manually or when mocking getError of the `ArtwokService`, but not when mocking the http-request like this:
+1. Add E2E (e.g. Cypress) tests using cypress which tests the app in productive mode or in the one similar to productive.
+2. Test filtering of images. It currently does not seem to work in jest. So you probably have to do it with E2E (e.g. Cypress) instead.
+2. Figure out why http error is shown when testing manually or when mocking getError of the `ArtwokService`, but not when mocking the http-request like this:
 ```typescript
     httpMock.expectOne((req: HttpRequest<unknown>): boolean => {
       return req.url.includes('api/artworks');
     }).flush('Error', {status: 500, statusText: 'Artworks load error!'});    
 ```
+Alternatively use E2E (e.g. Cypress) for this.
 3. Figure out how to merge code coverage or how to show code coverage over multiple libraries.
 These links might be helpful:
 https://duckduckgo.com/?q=nx+merge+code+coverage&t=ffab&ia=web

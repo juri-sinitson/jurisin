@@ -23,8 +23,9 @@ import { HttpRequest } from '@angular/common/http';
 
 class GridViewShellComponentHarness extends ComponentHarness {
 
-  static hostSelector = 'jurisin-details-dynamic-dialog-shell';
+  static hostSelector = 'jurisin-grid-view-shell';
 
+  protected locateFilter = this.locatorFor('[mark=gridFilter]');
   protected locateImages = this.locatorForAll('[mark=gridImage]');
   protected locateTitles = this.locatorForAll('[mark=gridTitle]');
   protected locateSubTitles = this.locatorForAll('[mark=gridSubtitle]');
@@ -34,6 +35,26 @@ class GridViewShellComponentHarness extends ComponentHarness {
 
   async areImagesShown(): Promise<boolean> {
     return Promise.resolve((await this.locateImages()).length > 0);
+  }
+
+  async areMultipleImagesShown(): Promise<boolean> {
+    return Promise.resolve((await this.locateImages()).length > 1);
+  }
+
+  async isJustOneImagesShown(): Promise<boolean> {
+    return Promise.resolve((await this.locateImages()).length === 1);
+  }
+
+  async filterImages(): Promise<void> {
+    (await this.locateFilter()).focus();
+    (await this.locateFilter()).click();
+    (await this.locateFilter()).sendKeys('arrival of');
+  }
+
+  async unfilterImages(): Promise<void> {
+    (await this.locateFilter()).focus();
+    (await this.locateFilter()).click();
+    (await this.locateFilter()).clear();
   }
 
   async areTitlesShown(): Promise<boolean> {
@@ -54,6 +75,12 @@ class GridViewShellComponentHarness extends ComponentHarness {
 
   async isLoadingShown(): Promise<boolean> {
     return Promise.resolve((await this.locateLoading()).length > 0);
+  }
+
+  async forceRefresh(): Promise<void> {
+    await this.waitForTasksOutsideAngular();
+    await this.forceStabilize();
+    return Promise.resolve();
   }
 }
 
@@ -189,6 +216,27 @@ describe('GridViewShellComponent', () => {
     expect(await subject.areSubtitlesShown()).toBe(true);
     expect(await subject.isErrorShown()).toBe(false);
     expect(await subject.isLoadingShown()).toBe(false);
+  });
+
+  // TODO:
+  // Figure out how to filter using the DOM of jest
+  // or use E2E (e.g. Cypress) for testing filtering instead
+  xit('should filter elements in grid view', async () => {
+
+    await setupComponents()
+    await createAndApply();
+    returnArtworks();
+    apply();
+
+    expect(await subject.areMultipleImagesShown()).toBe(true);
+    subject.filterImages();
+    // subject.forceRefresh();
+    apply();
+    expect(await subject.isJustOneImagesShown()).toBe(true);
+    subject.unfilterImages();
+    // subject.forceRefresh();
+    apply();
+    expect(await subject.areMultipleImagesShown()).toBe(true);
   });
 
   it('should show load grid view', async () => {
