@@ -17,7 +17,7 @@ The development server which is run when you issue the command `yarn run start` 
 The app fetches artworks in a grid list. When an element of that list is clicked/tipped the details dialog of the artwork is opened.
 The artworks API is described on https://api.artic.edu/docs/.
 The goal of the app is to demonstrate the usage of
-1. Monorepo concept (see https://nx.dev/l/r/core-concepts/why-monorepos) and below
+1. Monorepo concept (see https://nx.dev/l/r/core-concepts/why-monorepos) and and the DDD principles on https://www.angulararchitects.io/book pages 17 to 22.
 2. Storybook, see below
 3. Request caching with @ngrx/data, see below
 4. Unit-Testing by testing behavior instead of implementation details (see also https://www.youtube.com/watch?v=EZ05e7EMOLM)
