@@ -2,7 +2,16 @@
 
 ## Running the app
 Before you run the app first time, you need to run `yarn run install`.
-Run `yarn run artworks-backend-local` to start the local server and run `yarn run start` to start the app.
+### Local backend with local data
+Run `yarn run artworks-backend-local-data` to start the local server and run `yarn run start` to start the app, go to the `http://localhost:4200/`. `4200` is a default port of angular.
+
+### Local backend with product data
+Run `yarn run artworks-backend-prod-data` to start the local server and run `yarn run start` to start the app, go to the `http://localhost:4200/`. `4200` is a default port of angular.
+
+### Note
+The app does not access the data and the images directly to avoid CORS-issues and to stay safe against attacks associated with that. The data and images are fetched through the (local) backend instead.
+
+The development server which is run when you issue the command `yarn run start` uses also a proxy to the local backend. See `apps/artwork/src/proxy.conf.json` and https://angular.io/guide/build#proxying-to-a-backend-server.
 
 ## What does the app `artwork` do?
 The app fetches artworks in a grid list. When an element of that list is clicked/tipped the details dialog of the artwork is opened.
@@ -12,16 +21,25 @@ The goal of the app is to demonstrate the usage of
 2. Storybook, see below
 3. Request caching with @ngrx/data, see below
 4. Unit-Testing by testing behavior instead of implementation details (see also https://www.youtube.com/watch?v=EZ05e7EMOLM)
+5. Simple deployment
 
 ## Testing
 Run `yarn run test`
 
+## Linting
+Run `yarn run lint`
+
 ## Deployment
-Run `yarn run build` and serve or copy the directory `dist/apps/artwork`. If you reset the container with every deployment, you also need to run `yarn run install` every time before the building command.
 
-The app `artwork` uses relative paths which are proxyed to the local backend (see `apps/artwork/src/server/backend/backend-local.js`) during development. See also the configuration in `apps/artwork/src/proxy.conf.json` and https://angular.io/guide/build#proxying-to-a-backend-server. Thus we avoid CORS-Problems of the browser. For production you have to rewrite/proxy the paths above  probably in similar way to this is done in the proxy configuration above.
+### Local deployment
+Run `yarn run build`. When the build is ready run run either `yarn run artworks-backend-prod-data` for prod data or `yarn run artworks-backend-local-data` for local data if not yet run. Then just go to the base URL of the server. This would be usually `http://localhost:4300/`.
 
-In the production you have to proxy the relative path `/api/artworks/` to `https://api.artic.edu/api/v1/artworks`production URL. And the relative path `/images/:identifier` has to be proxied to one of the paths on listed on https://api.artic.edu/docs/#image-sizes, e.g. for the the size 400 you have to proxy to the production URL `https://www.artic.edu/iiif/2/{identifier}/full/843,/0/default.jpg`.
+### Prod deployment
+Run `yarn run build` and serve or copy the directory `dist/apps/artwork` in the directory your production backend mapped on. If you reset the container with every deployment, you also need to run `yarn run install` every time before the building command.
+
+In the production you have to proxy the data and images in the same way as in `apps/artwork/src/server/backend/backend-prod-data.js`. If you use NodeJs in production, you can extend the `backend-prod-data.js` above according to your needs.
+
+If you need other image sizes check ot the documentation on https://api.artic.edu/docs/#image-sizes.
 
 ## Tooling
 ### nx
@@ -45,17 +63,11 @@ Used for management of data fetched from network, e.g. via http. The data is fet
 ### Storybook
 1. Storybook: limit the canvas size to avoid every component to take the whole screen.
 
+4. Figure out how to proxy the relative image paths in storybook. The proxy configuration for default app is not applied to storybook automatically. Probably you need to extend the webpack configuration of storybook, see https://storybook.js.org/docs/react/configure/webpack.
 ### Deprecations
 Bump up RxJs and import everything from `rxjs` instead of `rxjs/operators`.
 ### Dedup
 1. Use the local backend data for storybook like this `import { data } from 'libs/artwork/api/src/assets/artworks.json';` instead of copy-paste.
-### Deployment
-1. Figure out how to access the API (currently https://api.artic.edu/api/v1/artworks) using 
-backend. The URL works in the browser, so probably some headers are missing.
-Thus you may try to copy all the headers from the browser that there is no difference
-between the browser an the local backend request. You may also try to make a request
-in postman or similar software first.
-4. Figure out how to proxy the relative image paths in storybook. The proxy configuration for default app is not applied to storybook automatically. Most probably you need to extend the webpack configuration of storybook, see https://storybook.js.org/docs/react/configure/webpack.
 
 ### Testing
 1. Add E2E (e.g. Cypress) tests using cypress which tests the app in productive mode or in the one similar to productive.
