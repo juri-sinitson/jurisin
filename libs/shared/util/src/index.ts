@@ -1,1 +1,1 @@
-export * from './lib/types/entity.model';
+export * from './lib/types/entity-base';
