@@ -3,7 +3,7 @@
   <jurisin-loading *ngIf="!error && loading"></jurisin-loading>
   <p-card *ngIf="!error && !loading">
     <ng-template pTemplate="header">
-      <img mark="detailsImage" src="images/{{image_id}}" />
+      <img style="height: 75vh; width: auto;" class="" mark="detailsImage" src="images/{{image_id}}" />
     </ng-template>
     <ng-template pTemplate="title">
         <span mark="detailsTitle">{{title}}</span>
