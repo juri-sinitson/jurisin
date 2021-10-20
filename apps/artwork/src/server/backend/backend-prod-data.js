@@ -23,6 +23,7 @@ app.get('/api/artworks', (req, res) => {
   proxy.web(req, res, {
     target: `http://api.artic.edu`,
     headers: {
+      // The current version of headers was copied 1 to 1 from the request headers of firefox
       'Accept':	'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
       'Accept-Encoding':	'gzip, deflate, br',
       'Accept-Language':	'en-US,en;q=0.5',
