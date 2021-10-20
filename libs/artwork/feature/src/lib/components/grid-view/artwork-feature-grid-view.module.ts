@@ -43,4 +43,4 @@ import { ArtworkModule } from '@jurisin/artwork/api';
     GridViewShellComponent,
   ]
 })
-export class GridViewModule { }
+export class ArtworkFeatureGridViewModule { }

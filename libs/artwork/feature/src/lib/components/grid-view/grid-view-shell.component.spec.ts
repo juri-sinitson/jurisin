@@ -12,7 +12,7 @@ import { DynamicDialogConfig } from 'primeng/dynamicdialog';
 
 // Own
 import { Artwork, ArtworkModule, ArtworkService } from '@jurisin/artwork/api';
-import { GridViewModule } from './grid-view.module';
+import { ArtworkFeatureGridViewModule } from './artwork-feature-grid-view.module';
 import { GridViewShellComponent } from './grid-view-shell.component';
 import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-dialog-shell.component';
 
@@ -137,7 +137,7 @@ describe('GridViewShellComponent', () => {
       imports: [
         HttpClientTestingModule,
         ArtworkModule,
-        GridViewModule,
+        ArtworkFeatureGridViewModule,
       ],
       providers: [
         DynamicDialogConfig,
