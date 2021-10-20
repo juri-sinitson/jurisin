@@ -39,7 +39,7 @@ Run `yarn run build` and serve or copy the directory `dist/apps/artwork` in the 
 
 In the production you have to proxy the data and images in the same way as in `apps/artwork/src/server/backend/backend-prod-data.js`. If you use NodeJs in production, you can extend the `backend-prod-data.js` above according to your needs.
 
-If you need other image sizes check ot the documentation on https://api.artic.edu/docs/#image-sizes.
+If you need other image sizes check out the documentation on https://api.artic.edu/docs/#image-sizes.
 
 ## Tooling
 ### nx
