@@ -1,7 +1,7 @@
 # Jurisin 
 
 ## Running the app
-Before you run the app first time, you need to run `yarn run install`.
+Before you run the app first time, you need to run `yarn install`.
 ### Local backend with local data
 Run `yarn run artworks-backend-local-data` to start the local server and run `yarn run start` to start the app, go to the `http://localhost:4200/`. `4200` is a default port of angular.
 
