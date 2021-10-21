@@ -35,7 +35,7 @@ Run `yarn run lint`
 Run `yarn run build`. When the build is ready run run either `yarn run artworks-backend-prod-data` for prod data or `yarn run artworks-backend-local-data` for local data if not yet run. Then just go to the base URL of the server. This would be usually `http://localhost:4300/`.
 
 ### Prod deployment
-Run `yarn run build` and serve or copy the directory `dist/apps/artwork` in the directory your production backend mapped on. If you reset the container with every deployment, you also need to run `yarn run install` every time before the building command.
+Run `yarn run build` and serve or copy the directory `dist/apps/artwork` in the directory your production backend mapped on. If you reset the container with every deployment, you also need to run `yarn install` every time before the building command.
 
 In the production you have to proxy the data and images in the same way as in `apps/artwork/src/server/backend/backend-prod-data.js`. If you use NodeJs in production, you can extend the `backend-prod-data.js` above according to your needs.
 
