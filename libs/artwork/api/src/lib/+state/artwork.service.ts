@@ -34,14 +34,16 @@ export class ArtworkService extends EntityCollectionServiceBase<Artwork> {
 
   getAll(): Observable<Artwork[]> {
 
-    zip(this.loaded$, this.loading$).pipe(
+    return zip(this.loaded$, this.loading$).pipe(
       // If not loaded and not loading
-      filter( ([loaded, loading] ):boolean => loaded === false && loading === false ),
-      // then just load
-      tap((): void => { super.load() } ),
-    ).subscribe();
-
-    return this.entities$;
+      map( ([loaded, loading]):boolean => loaded === false && loading === false ),
+      switchMap((mustRequest: boolean): Observable<Artwork[]> => {
+        if(mustRequest) {
+          return super.load();
+        }
+        return this.entities$;
+      })
+    );
   }
 
   getError(): Observable<string> {

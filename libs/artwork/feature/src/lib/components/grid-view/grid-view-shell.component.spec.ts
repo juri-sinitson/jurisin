@@ -165,10 +165,13 @@ describe('GridViewShellComponent', () => {
     fixture.detectChanges();
   };
 
-  const flushOneHttpRequest = (options?: {status: number, statusText: string}): void => {
+  const flushOneHttpRequest = (
+    options?: {status: number, statusText: string},
+    data: Record<string, unknown> | string = dataRaw
+  ): void => {
     httpMock.expectOne((req: HttpRequest<unknown>): boolean => {
       return req.url.includes('api/artworks');
-    }).flush(dataRaw, options ?? {});
+    }).flush(data, options ?? {});
     httpMock.verify();
   };
 
@@ -182,6 +185,12 @@ describe('GridViewShellComponent', () => {
 
   const returnArtworksLoadError = () =>
     jest.spyOn(artworkService, 'getError').mockReturnValue(of('Error happened!'));
+
+  // Alternative way to test an error. Trying to figure out, why
+  // no error is shown when using this.
+  const provokeHttRequestError = ():void => {
+    return flushOneHttpRequest({status: 500, statusText: 'Error Provoked!'}, 'error!');
+  }
 
   const returnArtworkDetails = () =>
     jest.spyOn(artworkService, 'getByKey').mockReturnValue(of(artworkForDetails));
@@ -255,6 +264,11 @@ describe('GridViewShellComponent', () => {
     await setupComponents();
     returnArtworksLoadError();
     await createAndApply();
+
+    // Trying to figure out, why
+    // no error is shown when using this.
+    // provokeHttRequestError();
+    // apply();
 
     expect(await subject.areImagesShown()).toBe(false);
     expect(await subject.areTitlesShown()).toBe(false);
