@@ -3,49 +3,30 @@ import { Component, OnInit } from '@angular/core';
 
 // Own
 import { Artwork, ArtworkService } from '@jurisin/artwork/api';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'jurisin-grid-view-shell',
   template: `
     <jurisin-grid-view
-      [artworks]="artworks"
-      [error]="error"
-      [loading]="loading"
+      [artworks]="artworks$ | async"
+      [error]="error$ | async "
+      [loading]="loading$ | async"
     >
     </jurisin-grid-view>
   `,
 })
 export class GridViewShellComponent implements OnInit {
 
-  artworks: Artwork[] = [];
-  error = '';
-  loading = true;
+  artworks$!: Observable<Artwork[]>;
+  error$!: Observable<string>;
+  loading$!: Observable<boolean>;
 
   constructor(private artworkService: ArtworkService) {}
 
   ngOnInit(): void {
-    this.loading = true;
-    this.artworkService.getAll().subscribe({
-      next: (artworks: Artwork[]): void => {
-        this.artworks = artworks;
-        this.error = '';
-        this.loading = false;
-      },
-      error: (error: Error): void =>  {
-        this.error = error.message;
-        this.loading = false;
-      }
-    });
-
-    this.artworkService.getError().subscribe({
-      next: (error: string): void => {
-        this.error = error;
-        this.loading = false;
-      },
-      error: (error: Error): void => {
-        this.error = error.message;
-        this.loading = false;
-      }
-    });
+    this.artworks$ = this.artworkService.getAll();
+    this.error$ = this.artworkService.getError();
+    this.loading$ = this.artworkService.getLoading();
   }
 }

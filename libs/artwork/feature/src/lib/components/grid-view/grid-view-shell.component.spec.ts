@@ -183,6 +183,9 @@ describe('GridViewShellComponent', () => {
   const returnArtworksNotLoaded = () =>
     jest.spyOn(artworkService, 'getAll').mockReturnValue(NEVER);
 
+  const returnArtworksAreLoading = () =>
+    jest.spyOn(artworkService, 'getLoading').mockReturnValue(of(true));
+
   const returnArtworksLoadError = () =>
     jest.spyOn(artworkService, 'getError').mockReturnValue(of('Error happened!'));
 
@@ -251,6 +254,7 @@ describe('GridViewShellComponent', () => {
   it('should show load grid view', async () => {
     await setupComponents();
     returnArtworksNotLoaded();
+    returnArtworksAreLoading();
     await createAndApply();
 
     expect(await subject.areImagesShown()).toBe(false);

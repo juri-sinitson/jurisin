@@ -4,7 +4,7 @@
 <p-dataView
   *ngIf="!error && !loading"
   #dv
-  [value]="artworks"
+  [value]="getArtworks()"
   layout="grid"
   filterBy="artist_title,title,date_display"
 >

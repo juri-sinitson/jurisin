@@ -6,7 +6,7 @@ import {
 import { Injectable } from '@angular/core';
 
 import { Observable, of, Subject, zip } from 'rxjs';
-import { filter, map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 
 import { Artwork } from './artwork';
 
@@ -52,5 +52,9 @@ export class ArtworkService extends EntityCollectionServiceBase<Artwork> {
         action.payload.data?.error?.error?.message ?? 'Unknown request error!'
       )
     );
+  }
+
+  getLoading(): Observable<boolean> {
+    return this.loading$;
   }
 }
