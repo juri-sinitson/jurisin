@@ -191,6 +191,7 @@ describe('GridViewShellComponent', () => {
 
   // Alternative way to test an error. Trying to figure out, why
   // no error is shown when using this.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const provokeHttRequestError = ():void => {
     return flushOneHttpRequest({status: 500, statusText: 'Error Provoked!'}, 'error!');
   }
