@@ -72,7 +72,14 @@ Bump up RxJs and import everything from `rxjs` instead of `rxjs/operators`.
 ### Testing
 1. Add E2E (e.g. Cypress) tests using cypress which tests the app in productive mode or in the one similar to productive.
 2. Figure out how to test filtering of images in jest. Or do it with E2E (e.g. Cypress) instead.
-3. Figure out why http error is shown when testing manually or when mocking getError of the `ArtwokService`, but not when mocking the http-request like this:
+3. Figure out why http error is shown when mocking the `get` method of `HttpClient` like this:
+```typescript
+  const returnArtworksLoadError = () =>
+    jest.spyOn(httpClient, 'get').mockReturnValue(
+      throwError(new Error('Error!'))
+    );
+```
+But not when mocking the http-request like this:
 ```typescript
     httpMock.expectOne((req: HttpRequest<unknown>): boolean => {
       return req.url.includes('api/artworks');

@@ -9,7 +9,7 @@
     "artworks-backend-local-data": "node apps/artwork/src/server/backend/backend-local-data.js",
     "artworks-backend-prod-data": "node apps/artwork/src/server/backend/backend-prod-data.js",
     "build": "nx affected:build --configuration=production --verbose",
-    "test": "nx affected:test --all",
+    "test": "nx affected:test --all --silent",
     "affected:test": "nx affected:test",
     "test:cover": "yarn run test --codeCoverage",
     "lint": "nx affected:lint --all",

@@ -19,7 +19,7 @@ import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-d
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { data } from 'libs/artwork/api/src/assets/artworks.json';
 
-import { HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
 class GridViewShellComponentHarness extends ComponentHarness {
 
@@ -127,6 +127,7 @@ describe('GridViewShellComponent', () => {
   let detailsSubject: DetailsComponentHarness;
   let artworkService: ArtworkService;
   let httpMock: HttpTestingController;
+  let httpClient: HttpClient;
 
   const dataRaw = data;
   const artworks: Artwork[] = data.data as Artwork[];
@@ -147,6 +148,7 @@ describe('GridViewShellComponent', () => {
 
     artworkService = TestBed.inject(ArtworkService);
     httpMock = TestBed.inject(HttpTestingController);
+    httpClient = TestBed.inject(HttpClient);
 
     return Promise.resolve(null);
   };
@@ -177,17 +179,13 @@ describe('GridViewShellComponent', () => {
 
   const returnArtworks = () => flushOneHttpRequest();
 
-  const returnArtworksByMock = () =>
-    jest.spyOn(artworkService, 'getAll').mockReturnValue(of(artworks));
-
   const returnArtworksNotLoaded = () =>
-    jest.spyOn(artworkService, 'getAll').mockReturnValue(NEVER);
-
-  const returnArtworksAreLoading = () =>
-    jest.spyOn(artworkService, 'getLoading').mockReturnValue(of(true));
+    jest.spyOn(httpClient, 'get').mockReturnValue(NEVER);
 
   const returnArtworksLoadError = () =>
-    jest.spyOn(artworkService, 'getError').mockReturnValue(of('Error happened!'));
+    jest.spyOn(httpClient, 'get').mockReturnValue(
+      throwError(new Error('Error!'))
+    );
 
   // Alternative way to test an error. Trying to figure out, why
   // no error is shown when using this.
@@ -255,7 +253,6 @@ describe('GridViewShellComponent', () => {
   it('should show load grid view', async () => {
     await setupComponents();
     returnArtworksNotLoaded();
-    returnArtworksAreLoading();
     await createAndApply();
 
     expect(await subject.areImagesShown()).toBe(false);
@@ -283,9 +280,10 @@ describe('GridViewShellComponent', () => {
 
   it('should show details', async () => {
     await setupComponents();
-    returnArtworksByMock();
     returnArtworkDetails();
     await createAndApply();
+    returnArtworks();
+    apply();
     await subject.clickGridItem();
 
     expect(await detailsSubject.isImageShown()).toBe(true);
@@ -298,9 +296,10 @@ describe('GridViewShellComponent', () => {
 
   it('should load details', async () => {
     await setupComponents();
-    returnArtworksByMock();
-    returnArtworkDetailsNotLoaded();
     await createAndApply();
+    returnArtworks();
+    returnArtworkDetailsNotLoaded();
+    apply();
     await subject.clickGridItem();
 
     expect(await detailsSubject.isImageShown()).toBe(false);
@@ -313,9 +312,10 @@ describe('GridViewShellComponent', () => {
 
   it('should show details error', async () => {
     await setupComponents();
-    returnArtworksByMock();
     returnDetailsError();
     await createAndApply();
+    returnArtworks();
+    apply();
     await subject.clickGridItem();
 
     expect(await detailsSubject.isImageShown()).toBe(false);
