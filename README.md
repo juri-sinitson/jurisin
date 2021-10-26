@@ -1,4 +1,4 @@
-# Jurisin 
+# Jurisin Artwork App
 
 ## Running the app
 Before you run the app first time, you need to run `yarn install`.
