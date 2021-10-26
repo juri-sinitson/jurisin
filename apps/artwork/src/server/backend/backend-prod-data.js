@@ -16,25 +16,18 @@ app.get('/images/:id', (req, res) => {
   remoteRes => remoteRes.pipe(res));
 });
 
+const proxyBase = 'api.artic.edu';
+
 const httpProxy = require('http-proxy');
 const proxy = httpProxy.createProxyServer({ secure: false });
 app.get('/api/artworks', (req, res) => {
   req.url = '/api/v1/artworks';
   proxy.web(req, res, {
-    target: `http://api.artic.edu`,
+    target: `https://${proxyBase}`,
     headers: {
-      // The current version of headers was copied 1 to 1 from the request headers of firefox
-      'Accept':	'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
-      'Accept-Encoding':	'gzip, deflate, br',
-      'Accept-Language':	'en-US,en;q=0.5',
-      'Connection':	'keep-alive',
-      'Host':	'api.artic.edu',
-      'Sec-Fetch-Dest':	'document',
-      'Sec-Fetch-Mode':	'navigate',
-      'Sec-Fetch-Site':	'none',
-      'Sec-Fetch-User':	'?1',
-      'Upgrade-Insecure-Requests': '1',
-      'User-Agent':	'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0',
+      ...req.headers,
+      // These headers were copied from the request headers of firefox
+      host:	proxyBase,
     }
   });
 });

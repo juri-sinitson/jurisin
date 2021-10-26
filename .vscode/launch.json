@@ -11,7 +11,7 @@
       "skipFiles": [
         "<node_internals>/**"
       ],
-      "program": "${workspaceFolder}\\apps\\artwork\\src\\server\\backend\\backend-local.js"
+      "program": "${workspaceFolder}\\apps\\artwork\\src\\server\\backend\\backend-prod-data.js"
     },
     {
       "type": "node",
