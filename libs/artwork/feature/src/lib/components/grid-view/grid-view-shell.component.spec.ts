@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ComponentHarness } from '@angular/cdk/testing';
 import { TestbedHarnessEnvironment } from '@angular/cdk/testing/testbed';
+import { HttpClient, HttpRequest } from '@angular/common/http';
 
 // RxJS
 import { NEVER, of, throwError } from 'rxjs';
@@ -18,8 +19,6 @@ import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-d
 
 // eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
 import { data } from 'libs/artwork/api/src/assets/artworks.json';
-
-import { HttpClient, HttpRequest } from '@angular/common/http';
 
 class GridViewShellComponentHarness extends ComponentHarness {
 
