@@ -67,7 +67,7 @@ Used for management of data fetched from network, e.g. via http. The data is fet
 
     Possible solution:
     
-    1. Use the assets library path like this: `/assets/:domain/:lib/:img`, e.g. `assets/images/artwork/api/0f1cc0e0-e42e-be16-3f71-2022da38cb93.jpg`.
+    1. Use the assets library path like this: `/assets/images/:domain/:lib/:img`, e.g. `assets/images/artwork/api/0f1cc0e0-e42e-be16-3f71-2022da38cb93.jpg`.
     2. Use the middleware according to https://webpack.js.org/configuration/dev-server/#devserveronbeforesetupmiddleware. This or similar could work:
     ```javascript
     devServer: {
