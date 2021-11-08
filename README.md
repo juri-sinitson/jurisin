@@ -64,6 +64,31 @@ Used for management of data fetched from network, e.g. via http. The data is fet
 1. Storybook: limit the canvas size to avoid every component to take the whole screen.
 
 4. Figure out how to proxy the relative image paths in storybook. The proxy configuration for default app is not applied to storybook automatically. Probably you need to extend the webpack configuration of storybook, see https://storybook.js.org/docs/react/configure/webpack.
+
+    Possible solution:
+    
+    1. Use the assets library path like this: `/assets/:domain/:lib/:img`, e.g. `assets/images/artwork/api/0f1cc0e0-e42e-be16-3f71-2022da38cb93.jpg`.
+    2. Use the middleware according to https://webpack.js.org/configuration/dev-server/#devserveronbeforesetupmiddleware. This or similar could work:
+    ```javascript
+    devServer: {
+      onBeforeSetupMiddleware: function (devServer) {
+        if (!devServer) {
+          throw new Error('webpack-dev-server is not defined');
+        }
+
+        const rootDir = path.join(__dirname);
+        const domain = req.params.domain;
+        const lib = req.params.lib;
+
+      devServer.app.get('/assets/images/:domain/:lib/:img', function (req, res) {
+        res.sendFile(`${req.url}`, {
+          root: `${rootDir}/../libs/${domain}/${lib}/src/assets/images/${img}`
+        });
+      });
+      },
+    },
+    ```
+
 ### Deprecations
 Bump up RxJs and import everything from `rxjs` instead of `rxjs/operators`.
 ### Dedup
