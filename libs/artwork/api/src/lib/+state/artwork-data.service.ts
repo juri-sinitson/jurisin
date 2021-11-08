@@ -10,7 +10,7 @@ import { Artwork } from './artwork';
 @Injectable()
 export class ArtworkDataService extends DefaultDataService<Artwork> {
   constructor(http: HttpClient, httpUrlGenerator: HttpUrlGenerator) {
-    super('Interview', http, httpUrlGenerator);
+    super('Artwork', http, httpUrlGenerator);
   }
 
   getAll(): Observable<Artwork[]> {
