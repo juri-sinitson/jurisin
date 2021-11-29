@@ -4,7 +4,7 @@ import { MessageModule } from 'primeng/message';
 import { ErrorComponent } from './error.component';
 
 export default {
-  title: 'ErrorComponent',
+  title: 'Shared/UI-Common/Error Message',
   component: ErrorComponent,
   decorators: [
     moduleMetadata({

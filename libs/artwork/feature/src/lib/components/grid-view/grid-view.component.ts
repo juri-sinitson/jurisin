@@ -3,11 +3,11 @@ import { Component, Input } from '@angular/core';
 
 // PrimeNG
 import { DialogService } from 'primeng/dynamicdialog';
-import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-dialog-shell.component';
 
 // Own
 import { Artwork } from '@jurisin/artwork/api';
 import { EntityBase } from '@jurisin/shared/util';
+import { DetailsDynamicDialogShellComponent } from '../details/details-dynamic-dialog-shell.component';
 
 type ArtworkPartial =  Partial<Artwork> & EntityBase;
 

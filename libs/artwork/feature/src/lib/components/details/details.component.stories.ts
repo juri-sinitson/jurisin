@@ -13,7 +13,7 @@ import { ErrorModule, LoadingModule } from '@jurisin/shared/ui-common';
 
 
 export default {
-  title: 'DetailsComponent',
+  title: 'Artwork/Details',
   component: DetailsComponent,
   decorators: [
     moduleMetadata({

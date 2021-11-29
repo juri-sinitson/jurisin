@@ -17,7 +17,7 @@ import { DetailsModule } from '../details/details.module';
 import { ErrorModule, LoadingModule } from '@jurisin/shared/ui-common';
 
 export default {
-  title: 'GridViewComponent',
+  title: 'Artwork/Grid View',
   component: GridViewComponent,
   decorators: [
     moduleMetadata({

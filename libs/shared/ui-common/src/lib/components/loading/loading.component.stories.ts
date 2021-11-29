@@ -7,7 +7,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { LoadingComponent } from './loading.component';
 
 export default {
-  title: 'LoadingComponent',
+  title: 'Shared/UI-Common/Loading Progress',
   component: LoadingComponent,
   decorators: [
     moduleMetadata({
