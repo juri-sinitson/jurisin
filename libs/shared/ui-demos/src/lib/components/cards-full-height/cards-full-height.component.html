@@ -1,0 +1,37 @@
+<h1>Plain HTML</h1>
+<div class="flex w-full" style="background-color: gray;">
+  <div class="flex-grow-1 m-2" style="background-color: brown;"><p>Row 1</p></div>
+  <div class="flex-grow-1 m-2" style="background-color: burlywood;"><h1>Big row</h1><p>Row 1</p></div>
+  <div class="flex-grow-1 m-2" style="background-color: olivedrab;"><p>Row 1</p></div>
+</div>
+
+<h1>PrimenNG default gaps</h1>
+<div class="grid w-full" style="background-color: gray;">
+
+  <div class="col">
+    <p-card [styleClass]="'h-full'">
+      <p-panel header="My great Panel">
+        <p>Panel content without template</p>
+      </p-panel>
+    </p-card>
+  </div>
+
+  <div class="col">
+    <p-card [styleClass]="'h-full'">
+      <ng-template pTemplate="content">
+        <h1>Big row of card</h1>
+        <h1>Another big row of card</h1>
+        <p>Some row of card</p>
+      </ng-template>
+    </p-card>
+  </div>
+
+  <div class="col">
+    <p-card [styleClass]="'h-full'">
+      <ng-template pTemplate="content">
+        <p>Row 1 of card</p>
+      </ng-template>
+    </p-card>
+  </div>
+
+</div>
