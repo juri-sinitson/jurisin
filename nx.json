@@ -50,12 +50,18 @@
       "tags": [],
       "implicitDependencies": ["artwork-feature"]
     },
+    "shared-storybook": {
+      "tags": []
+    },
     "shared-ui-common": {
       "tags": []
     },
     "shared-ui-common-e2e": {
       "tags": [],
       "implicitDependencies": ["shared-ui-common"]
+    },
+    "shared-ui-demos": {
+      "tags": []
     },
     "shared-util": {
       "tags": []
