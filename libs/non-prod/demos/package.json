@@ -1,5 +1,5 @@
 {
-  "name": "@jurisin/shared/storybook",
+  "name": "@jurisin/non-prod-demos",
   "version": "0.0.1",
   "peerDependencies": {
     "@angular/common": "^12.1.0",

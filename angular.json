@@ -275,33 +275,33 @@
       "tags": [],
       "implicitDependencies": ["artwork-feature"]
     },
-    "shared-storybook": {
+    "non-prod-demos": {
       "projectType": "library",
-      "root": "libs/shared/storybook",
-      "sourceRoot": "libs/shared/storybook/src",
+      "root": "libs/non-prod/demos",
+      "sourceRoot": "libs/non-prod/demos/src",
       "prefix": "jurisin",
       "targets": {
         "build": {
           "executor": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/shared/storybook"],
+          "outputs": ["dist/libs/non-prod/demos"],
           "options": {
-            "project": "libs/shared/storybook/ng-package.json"
+            "project": "libs/non-prod/demos/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "libs/shared/storybook/tsconfig.lib.prod.json"
+              "tsConfig": "libs/non-prod/demos/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "libs/shared/storybook/tsconfig.lib.json"
+              "tsConfig": "libs/non-prod/demos/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/storybook"],
+          "outputs": ["coverage/libs/non-prod/demos"],
           "options": {
-            "jestConfig": "libs/shared/storybook/jest.config.js",
+            "jestConfig": "libs/non-prod/demos/jest.config.js",
             "passWithNoTests": true
           }
         },
@@ -309,8 +309,8 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "libs/shared/storybook/src/**/*.ts",
-              "libs/shared/storybook/src/**/*.html"
+              "libs/non-prod/demos/src/**/*.ts",
+              "libs/non-prod/demos/src/**/*.html"
             ]
           },
           "outputs": ["{options.outputFile}"]
@@ -321,9 +321,86 @@
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
-              "configFolder": "libs/shared/storybook/.storybook"
+              "configFolder": "libs/non-prod/demos/.storybook"
             },
-            "projectBuildConfig": "shared-storybook:build-storybook"
+            "projectBuildConfig": "non-prod-demos:build-storybook"
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        },
+        "build-storybook": {
+          "executor": "@nrwl/storybook:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "outputPath": "dist/storybook/shared-ui-demos",
+            "config": {
+              "configFolder": "libs/non-prod/demos/.storybook"
+            },
+            "projectBuildConfig": "non-prod-demos:build-storybook",
+            "styles": ["apps/artwork/src/styles.scss"]
+          },
+          "configurations": {
+            "ci": {
+              "quiet": true
+            }
+          }
+        }
+      },
+      "tags": []
+    },
+    "non-prod-storybook": {
+      "projectType": "library",
+      "root": "libs/non-prod/storybook",
+      "sourceRoot": "libs/non-prod/storybook/src",
+      "prefix": "jurisin",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/angular:ng-packagr-lite",
+          "outputs": ["dist/libs/non-prod/storybook"],
+          "options": {
+            "project": "libs/non-prod/storybook/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/non-prod/storybook/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/non-prod/storybook/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/non-prod/storybook"],
+          "options": {
+            "jestConfig": "libs/non-prod/storybook/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/non-prod/storybook/src/**/*.ts",
+              "libs/non-prod/storybook/src/**/*.html"
+            ]
+          },
+          "outputs": ["{options.outputFile}"]
+        },
+        "storybook": {
+          "executor": "@nrwl/storybook:storybook",
+          "options": {
+            "uiFramework": "@storybook/angular",
+            "port": 4400,
+            "config": {
+              "configFolder": "libs/non-prod/storybook/.storybook"
+            },
+            "projectBuildConfig": "non-prod-storybook:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -338,9 +415,9 @@
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/shared-storybook",
             "config": {
-              "configFolder": "libs/shared/storybook/.storybook"
+              "configFolder": "libs/non-prod/storybook/.storybook"
             },
-            "projectBuildConfig": "shared-storybook:build-storybook",
+            "projectBuildConfig": "non-prod-storybook:build-storybook",
             "styles": ["apps/artwork/src/styles.scss"]
           },
           "configurations": {
@@ -455,83 +532,6 @@
       },
       "tags": [],
       "implicitDependencies": ["shared-ui-common"]
-    },
-    "shared-ui-demos": {
-      "projectType": "library",
-      "root": "libs/shared/ui-demos",
-      "sourceRoot": "libs/shared/ui-demos/src",
-      "prefix": "jurisin",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/angular:ng-packagr-lite",
-          "outputs": ["dist/libs/shared/ui-demos"],
-          "options": {
-            "project": "libs/shared/ui-demos/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "libs/shared/ui-demos/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "libs/shared/ui-demos/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/shared/ui-demos"],
-          "options": {
-            "jestConfig": "libs/shared/ui-demos/jest.config.js",
-            "passWithNoTests": true
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/ui-demos/src/**/*.ts",
-              "libs/shared/ui-demos/src/**/*.html"
-            ]
-          },
-          "outputs": ["{options.outputFile}"]
-        },
-        "storybook": {
-          "executor": "@nrwl/storybook:storybook",
-          "options": {
-            "uiFramework": "@storybook/angular",
-            "port": 4400,
-            "config": {
-              "configFolder": "libs/shared/ui-demos/.storybook"
-            },
-            "projectBuildConfig": "shared-ui-demos:build-storybook"
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        },
-        "build-storybook": {
-          "executor": "@nrwl/storybook:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "uiFramework": "@storybook/angular",
-            "outputPath": "dist/storybook/shared-ui-demos",
-            "config": {
-              "configFolder": "libs/shared/ui-demos/.storybook"
-            },
-            "projectBuildConfig": "shared-ui-demos:build-storybook",
-            "styles": ["apps/artwork/src/styles.scss"]
-          },
-          "configurations": {
-            "ci": {
-              "quiet": true
-            }
-          }
-        }
-      },
-      "tags": []
     },
     "shared-util": {
       "projectType": "library",

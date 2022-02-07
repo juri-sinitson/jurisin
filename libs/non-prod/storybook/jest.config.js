@@ -1,5 +1,5 @@
 module.exports = {
-  displayName: 'shared-storybook',
+  displayName: 'non-prod-storybook',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +8,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../../coverage/libs/shared/storybook',
+  coverageDirectory: '../../../coverage/libs/non-prod/storybook',
   transform: {
     '^.+.(ts|mjs|js|html)$': 'jest-preset-angular',
   },

@@ -8,18 +8,16 @@ export default {
   component: CardsFullHeightComponent,
   decorators: [
     moduleMetadata({
-      imports: [
-        CardsFullHeightModule,
-      ],
-    })
+      imports: [CardsFullHeightModule],
+    }),
   ],
 } as Meta<CardsFullHeightComponent>;
 
-const template: Story<CardsFullHeightComponent> = (args: CardsFullHeightComponent) => ({
+const template: Story<CardsFullHeightComponent> = (
+  args: CardsFullHeightComponent
+) => ({
   props: args,
 });
 
-
 export const primary = template.bind({});
-primary.args = {
-};
+primary.args = {};

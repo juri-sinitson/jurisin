@@ -17,9 +17,9 @@
     "paths": {
       "@jurisin/artwork/api": ["libs/artwork/api/src/index.ts"],
       "@jurisin/artwork/feature": ["libs/artwork/feature/src/index.ts"],
-      "@jurisin/shared/storybook": ["libs/shared/storybook/src/index.ts"],
+      "@jurisin/non-prod-demos": ["libs/non-prod/demos/src/index.ts"],
+      "@jurisin/non-prod-storybook": ["libs/non-prod/storybook/src/index.ts"],
       "@jurisin/shared/ui-common": ["libs/shared/ui-common/src/index.ts"],
-      "@jurisin/shared/ui-demos": ["libs/shared/ui-demos/src/index.ts"],
       "@jurisin/shared/util": ["libs/shared/util/src/index.ts"]
     }
   },

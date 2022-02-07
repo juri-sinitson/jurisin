@@ -11,9 +11,7 @@ import { PanelModule } from 'primeng/panel';
 import { CardsFullHeightComponent } from './cards-full-height.component';
 
 @NgModule({
-  declarations: [
-    CardsFullHeightComponent,
-  ],
+  declarations: [CardsFullHeightComponent],
   imports: [
     // Angular
     CommonModule,
@@ -23,8 +21,6 @@ import { CardsFullHeightComponent } from './cards-full-height.component';
     CardModule,
     PanelModule,
   ],
-  exports: [
-    CardsFullHeightComponent,
-  ]
+  exports: [CardsFullHeightComponent],
 })
-export class CardsFullHeightModule { }
+export class CardsFullHeightModule {}
