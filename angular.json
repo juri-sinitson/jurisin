@@ -323,7 +323,7 @@
             "config": {
               "configFolder": "libs/shared/storybook/.storybook"
             },
-            "projectBuildConfig": "shared-storybook"
+            "projectBuildConfig": "shared-storybook:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -340,7 +340,8 @@
             "config": {
               "configFolder": "libs/shared/storybook/.storybook"
             },
-            "projectBuildConfig": "shared-storybook"
+            "projectBuildConfig": "shared-storybook:build-storybook",
+            "styles": ["apps/artwork/src/styles.scss"]
           },
           "configurations": {
             "ci": {
@@ -503,7 +504,7 @@
             "config": {
               "configFolder": "libs/shared/ui-demos/.storybook"
             },
-            "projectBuildConfig": "shared-ui-demos"
+            "projectBuildConfig": "shared-ui-demos:build-storybook"
           },
           "configurations": {
             "ci": {
@@ -520,7 +521,8 @@
             "config": {
               "configFolder": "libs/shared/ui-demos/.storybook"
             },
-            "projectBuildConfig": "shared-ui-demos"
+            "projectBuildConfig": "shared-ui-demos:build-storybook",
+            "styles": ["apps/artwork/src/styles.scss"]
           },
           "configurations": {
             "ci": {
