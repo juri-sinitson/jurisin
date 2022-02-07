@@ -20,7 +20,8 @@
           "test",
           "e2e",
           "build-storybook"
-        ]
+        ],
+        "parallel": 1
       }
     }
   },
@@ -32,39 +33,35 @@
       }
     ]
   },
-  "projects": {
-    "artwork": {
-      "tags": []
+  "cli": {
+    "defaultCollection": "@nrwl/angular",
+    "packageManager": "yarn"
+  },
+  "defaultProject": "artwork",
+  "generators": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
     },
-    "artwork-api": {
-      "tags": []
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
     },
-    "artwork-e2e": {
-      "tags": [],
-      "implicitDependencies": ["artwork"]
+    "@nrwl/angular:library": {
+      "linter": "eslint",
+      "unitTestRunner": "jest"
     },
-    "artwork-feature": {
-      "tags": []
-    },
-    "artwork-feature-e2e": {
-      "tags": [],
-      "implicitDependencies": ["artwork-feature"]
-    },
-    "shared-storybook": {
-      "tags": []
-    },
-    "shared-ui-common": {
-      "tags": []
-    },
-    "shared-ui-common-e2e": {
-      "tags": [],
-      "implicitDependencies": ["shared-ui-common"]
-    },
-    "shared-ui-demos": {
-      "tags": []
-    },
-    "shared-util": {
-      "tags": []
+    "@nrwl/angular:component": {
+      "style": "scss"
     }
   }
 }

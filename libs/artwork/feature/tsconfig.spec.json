@@ -1,18 +1,12 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    // We use these options to be able to
-    // import json files e.g. in tests
-    // See also https://www.elite-corner.com/2020/07/different-ways-to-read-local-json-file-in-angular-with-example.html
-    // and
-    // https://www.angularjswiki.com/angular/how-to-read-local-json-files-in-angular/
     "resolveJsonModule": true,
     "esModuleInterop": true,
-
     "outDir": "../../../dist/out-tsc",
     "module": "commonjs",
     "types": ["jest", "node"]
   },
   "files": ["src/test-setup.ts"],
-  "include": ["**/*.spec.ts", "**/*.d.ts"]
+  "include": ["**/*.spec.ts", "**/*.test.ts", "**/*.d.ts"]
 }

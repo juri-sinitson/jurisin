@@ -1,14 +1,14 @@
 {
-  "version": 1,
+  "version": 2,
   "projects": {
     "artwork": {
       "projectType": "application",
       "root": "apps/artwork",
       "sourceRoot": "apps/artwork/src",
       "prefix": "jurisin",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "executor": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
             "outputPath": "dist/apps/artwork",
@@ -58,7 +58,7 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "executor": "@angular-devkit/build-angular:dev-server",
           "options": {
             "browserTarget": "artwork:build:development",
             "proxyConfig": "apps/artwork/src/proxy.conf.json"
@@ -74,38 +74,40 @@
           "defaultConfiguration": "development"
         },
         "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
             "browserTarget": "artwork:build"
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "apps/artwork/src/**/*.ts",
               "apps/artwork/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/apps/artwork"],
           "options": {
             "jestConfig": "apps/artwork/jest.config.js",
             "passWithNoTests": true
           }
         }
-      }
+      },
+      "tags": []
     },
     "artwork-api": {
       "projectType": "library",
       "root": "libs/artwork/api",
       "sourceRoot": "libs/artwork/api/src",
       "prefix": "jurisin",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/artwork/api"],
           "options": {
             "project": "libs/artwork/api/ng-package.json"
@@ -121,7 +123,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/artwork/api"],
           "options": {
             "jestConfig": "libs/artwork/api/jest.config.js",
@@ -129,23 +131,25 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/artwork/api/src/**/*.ts",
               "libs/artwork/api/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": []
     },
     "artwork-e2e": {
       "root": "apps/artwork-e2e",
       "sourceRoot": "apps/artwork-e2e/src",
       "projectType": "application",
-      "architect": {
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/artwork-e2e/cypress.json",
             "devServerTarget": "artwork:serve:development"
@@ -157,21 +161,24 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/artwork-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["artwork"]
     },
     "artwork-feature": {
       "projectType": "library",
       "root": "libs/artwork/feature",
       "sourceRoot": "libs/artwork/feature/src",
       "prefix": "jurisin",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/artwork/feature"],
           "options": {
             "project": "libs/artwork/feature/ng-package.json"
@@ -187,7 +194,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/artwork/feature"],
           "options": {
             "jestConfig": "libs/artwork/feature/jest.config.js",
@@ -195,22 +202,24 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/artwork/feature/src/**/*.ts",
               "libs/artwork/feature/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "storybook": {
-          "builder": "@nrwl/storybook:storybook",
+          "executor": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
               "configFolder": "libs/artwork/feature/.storybook"
-            }
+            },
+            "projectBuildConfig": "artwork-feature"
           },
           "configurations": {
             "ci": {
@@ -219,14 +228,15 @@
           }
         },
         "build-storybook": {
-          "builder": "@nrwl/storybook:build",
+          "executor": "@nrwl/storybook:build",
           "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/artwork-feature",
             "config": {
               "configFolder": "libs/artwork/feature/.storybook"
-            }
+            },
+            "projectBuildConfig": "artwork-feature"
           },
           "configurations": {
             "ci": {
@@ -234,15 +244,16 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "artwork-feature-e2e": {
       "root": "apps/artwork-feature-e2e",
       "sourceRoot": "apps/artwork-feature-e2e/src",
       "projectType": "application",
-      "architect": {
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/artwork-feature-e2e/cypress.json",
             "devServerTarget": "artwork-feature:storybook"
@@ -254,21 +265,24 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/artwork-feature-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["artwork-feature"]
     },
     "shared-storybook": {
       "projectType": "library",
       "root": "libs/shared/storybook",
       "sourceRoot": "libs/shared/storybook/src",
       "prefix": "jurisin",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/storybook"],
           "options": {
             "project": "libs/shared/storybook/ng-package.json"
@@ -284,7 +298,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared/storybook"],
           "options": {
             "jestConfig": "libs/shared/storybook/jest.config.js",
@@ -292,22 +306,24 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/shared/storybook/src/**/*.ts",
               "libs/shared/storybook/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "storybook": {
-          "builder": "@nrwl/storybook:storybook",
+          "executor": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
               "configFolder": "libs/shared/storybook/.storybook"
-            }
+            },
+            "projectBuildConfig": "shared-storybook"
           },
           "configurations": {
             "ci": {
@@ -316,14 +332,15 @@
           }
         },
         "build-storybook": {
-          "builder": "@nrwl/storybook:build",
+          "executor": "@nrwl/storybook:build",
           "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/shared-storybook",
             "config": {
               "configFolder": "libs/shared/storybook/.storybook"
-            }
+            },
+            "projectBuildConfig": "shared-storybook"
           },
           "configurations": {
             "ci": {
@@ -331,16 +348,17 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-ui-common": {
       "projectType": "library",
       "root": "libs/shared/ui-common",
       "sourceRoot": "libs/shared/ui-common/src",
       "prefix": "jurisin",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui-common"],
           "options": {
             "project": "libs/shared/ui-common/ng-package.json"
@@ -356,7 +374,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared/ui-common"],
           "options": {
             "jestConfig": "libs/shared/ui-common/jest.config.js",
@@ -364,22 +382,24 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/shared/ui-common/src/**/*.ts",
               "libs/shared/ui-common/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "storybook": {
-          "builder": "@nrwl/storybook:storybook",
+          "executor": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
               "configFolder": "libs/shared/ui-common/.storybook"
-            }
+            },
+            "projectBuildConfig": "shared-ui-common"
           },
           "configurations": {
             "ci": {
@@ -388,14 +408,15 @@
           }
         },
         "build-storybook": {
-          "builder": "@nrwl/storybook:build",
+          "executor": "@nrwl/storybook:build",
           "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/shared-ui-common",
             "config": {
               "configFolder": "libs/shared/ui-common/.storybook"
-            }
+            },
+            "projectBuildConfig": "shared-ui-common"
           },
           "configurations": {
             "ci": {
@@ -403,15 +424,16 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-ui-common-e2e": {
       "root": "apps/shared-ui-common-e2e",
       "sourceRoot": "apps/shared-ui-common-e2e/src",
       "projectType": "application",
-      "architect": {
+      "targets": {
         "e2e": {
-          "builder": "@nrwl/cypress:cypress",
+          "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/shared-ui-common-e2e/cypress.json",
             "devServerTarget": "shared-ui-common:storybook"
@@ -423,21 +445,24 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": ["apps/shared-ui-common-e2e/**/*.{js,ts}"]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
+      },
+      "tags": [],
+      "implicitDependencies": ["shared-ui-common"]
     },
     "shared-ui-demos": {
       "projectType": "library",
       "root": "libs/shared/ui-demos",
       "sourceRoot": "libs/shared/ui-demos/src",
       "prefix": "jurisin",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/ui-demos"],
           "options": {
             "project": "libs/shared/ui-demos/ng-package.json"
@@ -453,7 +478,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared/ui-demos"],
           "options": {
             "jestConfig": "libs/shared/ui-demos/jest.config.js",
@@ -461,22 +486,24 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/shared/ui-demos/src/**/*.ts",
               "libs/shared/ui-demos/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         },
         "storybook": {
-          "builder": "@nrwl/storybook:storybook",
+          "executor": "@nrwl/storybook:storybook",
           "options": {
             "uiFramework": "@storybook/angular",
             "port": 4400,
             "config": {
               "configFolder": "libs/shared/ui-demos/.storybook"
-            }
+            },
+            "projectBuildConfig": "shared-ui-demos"
           },
           "configurations": {
             "ci": {
@@ -485,14 +512,15 @@
           }
         },
         "build-storybook": {
-          "builder": "@nrwl/storybook:build",
+          "executor": "@nrwl/storybook:build",
           "outputs": ["{options.outputPath}"],
           "options": {
             "uiFramework": "@storybook/angular",
             "outputPath": "dist/storybook/shared-ui-demos",
             "config": {
               "configFolder": "libs/shared/ui-demos/.storybook"
-            }
+            },
+            "projectBuildConfig": "shared-ui-demos"
           },
           "configurations": {
             "ci": {
@@ -500,16 +528,17 @@
             }
           }
         }
-      }
+      },
+      "tags": []
     },
     "shared-util": {
       "projectType": "library",
       "root": "libs/shared/util",
       "sourceRoot": "libs/shared/util/src",
       "prefix": "jurisin",
-      "architect": {
+      "targets": {
         "build": {
-          "builder": "@nrwl/angular:ng-packagr-lite",
+          "executor": "@nrwl/angular:ng-packagr-lite",
           "outputs": ["dist/libs/shared/util"],
           "options": {
             "project": "libs/shared/util/ng-package.json"
@@ -525,7 +554,7 @@
           "defaultConfiguration": "production"
         },
         "test": {
-          "builder": "@nrwl/jest:jest",
+          "executor": "@nrwl/jest:jest",
           "outputs": ["coverage/libs/shared/util"],
           "options": {
             "jestConfig": "libs/shared/util/jest.config.js",
@@ -533,47 +562,17 @@
           }
         },
         "lint": {
-          "builder": "@nrwl/linter:eslint",
+          "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
               "libs/shared/util/src/**/*.ts",
               "libs/shared/util/src/**/*.html"
             ]
-          }
+          },
+          "outputs": ["{options.outputFile}"]
         }
-      }
-    }
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular",
-    "packageManager": "yarn"
-  },
-  "schematics": {
-    "@nrwl/angular": {
-      "application": {
-        "linter": "eslint"
       },
-      "library": {
-        "linter": "eslint"
-      },
-      "storybook-configuration": {
-        "linter": "eslint"
-      }
-    },
-    "@nrwl/angular:application": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
-    },
-    "@nrwl/angular:library": {
-      "style": "scss",
-      "linter": "eslint",
-      "unitTestRunner": "jest"
-    },
-    "@nrwl/angular:component": {
-      "style": "scss"
+      "tags": []
     }
-  },
-  "defaultProject": "artwork"
+  }
 }
