@@ -19,7 +19,8 @@
     "test:cover": "yarn run test --codeCoverage",
     "lint": "nx affected:lint",
     "lint-all": "nx affected:lint --all",
-    "affected:lint": "nx affected:lint"
+    "affected:lint": "nx affected:lint",
+    "artwork:e2e": "nx e2e artwork-e2e"
   },
   "private": true,
   "dependencies": {
