@@ -20,8 +20,8 @@
     "lint": "nx affected:lint",
     "lint-all": "nx affected:lint --all",
     "affected:lint": "nx affected:lint",
-    "artwork:e2e": "nx e2e artwork-e2e",
-    "e2e": "nx run artwork:e2e --verbose",
+    "artwork-e2e": "nx e2e artwork-e2e",
+    "e2e": "nx run artwork-e2e:e2e --verbose",
     "cypress-run": "./node_modules/.bin/cypress open",
     "cypress-open": "./node_modules/.bin/cypress run"
   },
