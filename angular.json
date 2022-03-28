@@ -8,14 +8,9 @@
       "prefix": "jurisin",
       "targets": {
         "build": {
-          "executor": "@angular-builders/custom-webpack:browser",
+          "executor": "@angular-devkit/build-angular:browser",
           "outputs": ["{options.outputPath}"],
           "options": {
-
-            "customWebpackConfig": {
-              "path": "./coverage.webpack.ts"
-            },
-
             "outputPath": "dist/apps/artwork",
             "index": "apps/artwork/src/index.html",
             "main": "apps/artwork/src/main.ts",
@@ -52,9 +47,6 @@
               "outputHashing": "all"
             },
             "development": {
-              "customWebpackConfig": {
-                "path": "./coverage.webpack.ts"
-              },
               "buildOptimizer": false,
               "optimization": false,
               "vendorChunk": true,
@@ -66,10 +58,11 @@
           "defaultConfiguration": "production"
         },
         "serve": {
-          "executor": "@angular-builders/custom-webpack:dev-server",
+          "executor": "ngx-build-plus:dev-server",
           "options": {
             "browserTarget": "artwork:build:development",
-            "proxyConfig": "apps/artwork/src/proxy.conf.json"
+            "proxyConfig": "apps/artwork/src/proxy.conf.json",
+            "extraWebpackConfig": "./coverage.webpack.js"
           },
           "configurations": {
             "production": {
