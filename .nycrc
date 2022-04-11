@@ -1,5 +1,5 @@
 {
-  "all": true,
+  "extends": "@istanbuljs/nyc-config-typescript",
   "check-coverage": false,
   "branches": 99,
   "lines": 99,

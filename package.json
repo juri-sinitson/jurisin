@@ -24,7 +24,9 @@
     "e2e": "nx run artwork-e2e:e2e --verbose",
     "e2e2": "nx reset && rm -fr apps/artwork-e2e/coverage apps/artwork-e2e/.nyc_output && nx run artwork-e2e:e2e --verbose",
     "cypress-run": "./node_modules/.bin/cypress open",
-    "cypress-open": "./node_modules/.bin/cypress run"
+    "cypress-open": "./node_modules/.bin/cypress run",
+    "check-cov": "npx nyc report -r text-summary --check-coverage",
+    "cov-report": "npx nyc report -r text-summary"
   },
   "private": true,
   "dependencies": {
@@ -97,7 +99,9 @@
     "postcss-preset-env": "^6.7.0",
     "postcss-url": "^10.1.1",
     "prettier": "2.5.1",
+    "source-map-support": "^0.5.21",
     "ts-jest": "27.0.5",
+    "ts-node": "^10.7.0",
     "typescript": "4.5.5"
   },
   "packageManager": "yarn@3.0.2"
