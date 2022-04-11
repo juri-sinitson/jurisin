@@ -1,0 +1,11 @@
+{
+  "all": true,
+  "check-coverage": false,
+  "branches": 99,
+  "lines": 99,
+  "functions": 99,
+  "statements": 99,
+  "reporter": ["html"],
+  "skip-full": true,
+  "per-file": true
+}

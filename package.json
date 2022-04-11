@@ -22,6 +22,7 @@
     "affected:lint": "nx affected:lint",
     "artwork-e2e": "nx e2e artwork-e2e",
     "e2e": "nx run artwork-e2e:e2e --verbose",
+    "e2e2": "nx reset && rm -fr apps/artwork-e2e/coverage apps/artwork-e2e/.nyc_output && nx run artwork-e2e:e2e --verbose",
     "cypress-run": "./node_modules/.bin/cypress open",
     "cypress-open": "./node_modules/.bin/cypress run"
   },
@@ -99,9 +100,5 @@
     "ts-jest": "27.0.5",
     "typescript": "4.5.5"
   },
-  "packageManager": "yarn@3.0.2",
-  "nyc": {
-    "extends": "@istanbuljs/nyc-config-typescript",
-    "all": true
-  }
+  "packageManager": "yarn@3.0.2"
 }
