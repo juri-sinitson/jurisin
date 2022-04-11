@@ -73,6 +73,23 @@
           },
           "defaultConfiguration": "development"
         },
+        "serve-coverage": {
+          "executor": "ngx-build-plus:dev-server",
+          "options": {
+            "browserTarget": "artwork:build:development",
+            "proxyConfig": "apps/artwork/src/proxy.conf.json",
+            "extraWebpackConfig": "./coverage.webpack.js"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "artwork:build:production"
+            },
+            "development": {
+              "browserTarget": "artwork:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
         "extract-i18n": {
           "executor": "@angular-devkit/build-angular:extract-i18n",
           "options": {
@@ -152,11 +169,11 @@
           "executor": "@nrwl/cypress:cypress",
           "options": {
             "cypressConfig": "apps/artwork-e2e/cypress.json",
-            "devServerTarget": "artwork:serve:development"
+            "devServerTarget": "artwork:serve-coverage:development"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "artwork:serve:production"
+              "devServerTarget": "artwork:serve-coverage:production"
             }
           }
         },

@@ -1,0 +1,5 @@
+{
+  "reporter": ["html"],
+  "skip-full": true,
+  "per-file": true
+}
