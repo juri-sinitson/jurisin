@@ -6,4 +6,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'artwork';
+
+  cond = true;
+
+  private deadCode() {
+    if(this.cond) {
+      console.log('hooked');
+    }
+  }
 }
